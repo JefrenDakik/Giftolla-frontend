@@ -1,0 +1,7 @@
+@import "./fonts.scss";
+@import "./sizes.scss";
+
+body {
+  @extend .bnq.acumin;
+  @extend .bnq.font-md;
+}
