@@ -2,7 +2,7 @@
   <div class="the-header bnq font-l">
     <b-navbar toggleable="lg" type="light" variant="faded">
       <b-navbar-brand href="/">
-        <b-img src="~/assets/images/logo.png" width="100" height="100"></b-img>
+        <b-img src="~/assets/images/logo.png" width="100" height="100"/>
       </b-navbar-brand>
 
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
@@ -21,7 +21,28 @@
           <b-nav-item href="#">CONTACT</b-nav-item>
         </b-navbar-nav>
 
+        <b-navbar-nav class="ml-auto bnq font-md">
+          <b-nav-item href="#" class="d-flex flex-column">
+            <div class="d-flex justify-content-center">
+              <b-img src="~/assets/images/icons/heart.png" width="60" height="60"/>
+            </div>
+            <div class="d-flex justify-content-center">Whishlist</div>
+          </b-nav-item>
 
+          <b-nav-item href="#" class="d-flex flex-column mx-3">
+            <div class="d-flex justify-content-center">
+              <b-img src="~/assets/images/icons/cart.png" width="60" height="60"/>
+            </div>
+            <div class="d-flex justify-content-center">My Cart</div>
+          </b-nav-item>
+
+          <b-nav-item href="#" class="d-flex flex-column">
+            <div class="d-flex justify-content-center">
+              <b-img src="~/assets/images/icons/profile.png" width="60" height="60"/>
+            </div>
+            <div class="d-flex justify-content-center">Login</div>
+          </b-nav-item>
+        </b-navbar-nav>
       </b-collapse>
   </b-navbar>
   </div>

@@ -1,7 +1,8 @@
 <template>
   <div class="home row">
-    <div class="col-md-6 py-4">
-      <b-img src="~/assets/images/welcome.png" fluid alt="Responsive image"></b-img>
+    <div class="col-md-6 d-flex flex-column justify-content-center align-items-center px-5 pb-5">
+      <b-img src="~/assets/images/welcome.png" fluid  alt="Responsive image" 
+        class="title-img"/>
       <p>
         Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
         Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
@@ -13,8 +14,8 @@
       </p>
     </div>
     
-    <div class="col-md-6">
-      <b-img src="~/assets/images/flower.png" fluid alt="Responsive image"></b-img>
+    <div class="col-md-6 px-5">
+      <b-img src="~/assets/images/flower.png" fluid alt="Responsive image"/>
     </div>
   </div>
 </template>
@@ -26,5 +27,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.title-img {
+  width: 75%;
+}
 
 </style>

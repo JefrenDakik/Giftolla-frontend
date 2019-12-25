@@ -2,14 +2,19 @@
   <div>
     <TheHeader/>
     <nuxt class="container-fluid"/>
+    <hr class="bg-dark">
+    <TheFooter/>
   </div>
 </template>
 
 <script>
-import TheHeader from "@/components/Navigation/TheHeader/TheHeader";
+import TheHeader from "@/components/Navigation/TheHeader/TheHeader"
+import TheFooter from "@/components/Footer/TheFooter"
+
 export default {
   components: {
-    TheHeader
+    TheHeader,
+    TheFooter
   }
 }
 </script>
