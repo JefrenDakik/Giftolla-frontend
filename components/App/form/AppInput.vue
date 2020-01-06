@@ -1,20 +1,32 @@
 <template>
-  <div>
-    <input
-    v-model="value$"
-    class="bnq form-input"
-    :readonly="readOnly"
-  />
+  <div class="d-flex flex-column">
+    <Label :for="name" class="bnq font-l">{{ label }}</Label>
+    <ValidationProvider :rules="rules" v-slot="{ errors }">
+      <input
+        :name="name"
+        v-model="value$"
+        :readonly="readOnly"
+        class=" form-control input-lg"/>
+      <div class="text-danger">{{ errors[0] }}</div>
+    </ValidationProvider>
   </div>
 </template>
 
 <script>
+  import { ValidationProvider } from 'vee-validate';
+
   export default {
     name: 'AppInput',
+    components: {
+      ValidationProvider,
+    },
     inheritAttrs: true,
     props: {
+      label: String,
       value: {},
+      name: String,
       readOnly: Boolean,
+      rules: String,
     },
     data() {
       return {

@@ -5,8 +5,8 @@
     </h1>
     <p>Have any questions? We'd love to hear from you</p>
 
-    <div class="d-flex flex-row my-5">
-      <div class="flex-even d-flex flex-column align-items-center p-4">
+    <div class="row my-5">
+      <div class="col p-4">
         <b-img src="~/assets/images/icons/whatsapp.png" width="50" height="50"/>
         <p class="mt-4">
           Whatsapp or Call us on:<br>
@@ -14,7 +14,7 @@
         </p>
       </div>
 
-      <div class="flex-even d-flex flex-column align-items-center p-4
+      <div class="col p-4
         border-right border-left border-dark">
         <b-img src="~/assets/images/icons/mail.png" width="50" height="50"/>
         <p class="mt-4">
@@ -23,7 +23,7 @@
         </p>
       </div>
 
-      <div class="flex-even d-flex flex-column align-items-center p-4">
+      <div class="col p-4">
         <div>
           <b-img src="~/assets/images/icons/instagram.png" width="50" height="50" class="mr-2"/>
           <b-img src="~/assets/images/icons/facebook.png" width="50" height="50"/>

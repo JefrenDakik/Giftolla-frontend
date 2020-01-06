@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <div id="app">
     <TheHeader/>
     <nuxt class="container-fluid"/>
-    <hr class="bg-dark">
+    <!-- <hr class="bg-dark"> -->
     <TheFooter/>
   </div>
 </template>
@@ -19,6 +19,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 
 </style>
+
