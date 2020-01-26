@@ -3,7 +3,7 @@
     <div class="col-md-6 d-flex flex-column justify-content-center align-items-center px-5 pb-5">
       <b-img src="~/assets/images/welcome.png" fluid  alt="Responsive image" 
         class="title-img"/>
-      <p>
+      <p class="bnq elegant">
         Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
         Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
         when an unknown printer took a galley of type and scrambled it to make a type  

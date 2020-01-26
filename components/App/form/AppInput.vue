@@ -1,48 +1,48 @@
 <template>
   <div class="d-flex flex-column">
-    <Label :for="name" class="bnq font-l">{{ label }}</Label>
-    <ValidationProvider :rules="rules" v-slot="{ errors }">
+    <Label :for="$attrs.name" class="bnq font-l">{{ label }}</Label>
+    <ValidationProvider :name="$attrs.name" :rules="rules" v-slot="{ errors }" :vid="$attrs.vid">
       <input
-        :name="name"
+        :name="$attrs.name"
+        :type="$attrs.type"
         v-model="value$"
         :readonly="readOnly"
-        class=" form-control input-lg"/>
+        class="bnq form-control"/>
       <div class="text-danger">{{ errors[0] }}</div>
     </ValidationProvider>
   </div>
 </template>
 
 <script>
-  import { ValidationProvider } from 'vee-validate';
+import { ValidationProvider } from 'vee-validate';
 
-  export default {
-    name: 'AppInput',
-    components: {
-      ValidationProvider,
-    },
-    inheritAttrs: true,
-    props: {
-      label: String,
-      value: {},
-      name: String,
-      readOnly: Boolean,
-      rules: String,
-    },
-    data() {
-      return {
-        value$: ""
+export default {
+  name: 'AppInput',
+  components: {
+    ValidationProvider,
+  },
+  inheritAttrs: true,
+  props: {
+    label: String,
+    value: {},
+    readOnly: Boolean,
+    rules: String,
+  },
+  data() {
+    return {
+      value$: ""
+    }
+  },
+  watch: {
+    value: {
+      immediate: true,
+      handler(newValue) {
+        this.value$ = newValue
       }
     },
-    watch: {
-      value: {
-        immediate: true,
-        handler(newValue) {
-          this.value$ = newValue
-        }
-      },
-      value$(value) {
-        this.$emit('input', value)
-      }
+    value$(value) {
+      this.$emit('input', value)
     }
   }
+}
 </script>

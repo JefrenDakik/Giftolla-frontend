@@ -1,4 +1,51 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
 
+
+@include media-breakpoint-up(xs) {
+  .bnq.font-xl {
+    font-size: 20vw;
+  }
+
+  .bnq.font-l {
+    font-size: 1rem;
+  }
+
+  .bnq.font-md {
+    font-size: 0.7rem;
+  }
+}
+
+@include media-breakpoint-up(sm) {
+  .bnq.font-xl {
+    font-size: 10vw;
+  }
+
+  .bnq.font-l {
+    font-size: 1.1rem;
+  }
+
+  .bnq.font-md {
+    font-size: 0.8rem;
+  }
+}
+
+@include media-breakpoint-up(md) {
+.bnq.font-xl {
+  font-size: 10vw;
+}
+
+.bnq.font-l {
+  font-size: 1.2rem;
+}
+
+.bnq.font-md {
+  font-size: 0.9rem;
+}
+}
+
+@include media-breakpoint-up(lg) {
 .bnq.font-xl {
   font-size: 10vw;
 }
@@ -9,4 +56,5 @@
 
 .bnq.font-md {
   font-size: 1.2rem;
+}
 }

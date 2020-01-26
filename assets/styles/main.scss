@@ -1,11 +1,17 @@
 @import "./fonts.scss";
 @import "./sizes.scss";
 @import "~bootstrap/scss/bootstrap";
+@import "./colors.scss";
 
+/*=============================================================================
+  Main css for some specific elements, and for some main layout features
+  =============================================================================*/
 
 html, body, #app {
-  @extend .bnq.acumin;
+  @extend .bnq.aileron;
   @extend .bnq.font-md;
+  color: $dark-grey;
+
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -15,24 +21,71 @@ hr {
   width: 100%;
 }
 
-@media (max-width: sm) {
-  body{font-size: 10px;}
-}
-
-@media (min-width: sm) {
-  body{font-size: 40px;}
-}
-
+/* This is to make the footer stick at the bottom while maintaining full height of the viewport. */
 #app {
   overflow-y: auto;
   position: relative;
   min-height: 100vh;
 }
 
-.bnq.form-input-md {
-  width: 15vw;
+.container-fluid {
+  padding-bottom: 80px;
+}
+/*******/
+
+.active-link {
+  color: $dark-grey;
+  @extend .aileron-thin;
 }
 
-.container-fluid {
-  padding-bottom: 100px;
+.active-link:hover {
+  color: $galapagos-green;
 }
+
+/*============================================================================*/
+
+
+/*=============================================================================
+  Edited bootstrap classes
+  =============================================================================*/
+
+/* Changed colors of the navbar items */
+.navbar-light .navbar-nav .nav-link:hover, .navbar-light .navbar-nav .nav-link:focus {
+  color: $galapagos-green;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: $dark-grey;
+}
+
+.dropdown-item:hover, .dropdown-item:focus {
+  color: $galapagos-green;
+}
+/*******/
+
+/*=============================================================================*/
+
+
+/*=============================================================================
+  classes and styles for form inputs and buttons
+  =============================================================================*/
+
+input:focus, textarea:focus {
+  box-shadow: 0 0 5px $galapagos-green !important;
+  padding: 3px 0px 3px 3px;
+  margin: 5px 1px 3px 0px;
+  border: 1px solid $galapagos-green !important;
+}
+
+.form-control {
+  height: 3rem;
+  border-radius: 0px;
+  border: 1px solid black;
+}
+
+.bnq.button-md {
+  width: 200px;
+
+}
+
+/*=============================================================================*/

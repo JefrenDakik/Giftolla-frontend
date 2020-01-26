@@ -1,34 +1,34 @@
 @font-face {
   font-family: 'stoner Regular';
-  font-style: normal;
-  font-weight: normal;
   src: local('stoner Regular'), url('./fonts/stoner.woff') format('woff');
   }
 
 @font-face {
   font-family: 'elegant Ar';
-  font-style: normal;
-  font-weight: normal;
   src: local('elegant Ar'), url('./fonts/Elegant-ar.ttf') format('ttf');
 }
 
-@font-face {font-family: "Acumin Variable Concept"; 
-  src: url("//db.onlinewebfonts.com/t/066ce24dae3730ed6c648b09efaea93a.eot"); 
-  src: url("//db.onlinewebfonts.com/t/066ce24dae3730ed6c648b09efaea93a.eot?#iefix") format("embedded-opentype"), 
-  url("//db.onlinewebfonts.com/t/066ce24dae3730ed6c648b09efaea93a.woff2") format("woff2"), 
-  url("//db.onlinewebfonts.com/t/066ce24dae3730ed6c648b09efaea93a.woff") format("woff"), 
-  url("//db.onlinewebfonts.com/t/066ce24dae3730ed6c648b09efaea93a.ttf") format("truetype"), 
-  url("//db.onlinewebfonts.com/t/066ce24dae3730ed6c648b09efaea93a.svg#Acumin Variable Concept") format("svg"); 
-}
+@import url("https://use.typekit.net/tjr4zbr.css");
 
-.bnq.acumin {
-  font-family: 'Acumin Variable Concept';
+
+.bnq.aileron {
+  font-family: aileron, sans-serif;
+  font-weight: 300;
+  font-style: normal;
+
+  .aileron-thin {
+    font-weight: 100;
+  }
 }
 
 .bnq.stoner {
   font-family: 'stoner Regular';
+  font-style: normal;
+  font-weight: normal;
 }
 
 .bnq.elegant {
-  font-family: 'elegant-ar'
+  font-family: 'elegant-ar', sans-serif;
+  font-style: normal;
+  font-weight: normal;
 }

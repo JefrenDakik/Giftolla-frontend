@@ -8,8 +8,8 @@
 </template>
 
 <script>
-import TheHeader from "@/components/Navigation/TheHeader/TheHeader"
-import TheFooter from "@/components/Footer/TheFooter"
+import TheHeader from "@/components/Navigation/TheHeader"
+import TheFooter from "@/components/TheFooter"
 
 export default {
   components: {

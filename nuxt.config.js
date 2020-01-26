@@ -55,5 +55,10 @@ export default {
     ],
     extend (config, ctx) {
     }
+  },
+  router: {
+    linkActiveClass: 'active-link',
+    linkExactActiveClass: 'active-link',
+    linkPrefetchedClass: 'active-link'
   }
 }

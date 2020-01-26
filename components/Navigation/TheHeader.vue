@@ -1,7 +1,7 @@
 <template>
-  <div class="the-header bnq font-l">
+  <div class="the-header bnq elegant">
     <b-navbar toggleable="lg" type="light" variant="faded">
-      <b-navbar-brand href="/">
+      <b-navbar-brand to="/">
         <b-img src="~/assets/images/logo.png" width="100" height="100"/>
       </b-navbar-brand>
 
@@ -21,22 +21,22 @@
           <b-nav-item href="#">CONTACT</b-nav-item>
         </b-navbar-nav>
 
-        <b-navbar-nav class="ml-auto bnq font-md">
-          <b-nav-item href="#" class="d-flex flex-column">
+        <b-navbar-nav class="ml-auto">
+          <b-nav-item to="/wishlist" class="d-flex flex-column">
             <div class="d-flex justify-content-center">
               <b-img src="~/assets/images/icons/heart.png" width="60" height="60"/>
             </div>
             <div class="d-flex justify-content-center">Whishlist</div>
           </b-nav-item>
 
-          <b-nav-item href="#" class="d-flex flex-column mx-3">
+          <b-nav-item to="/my-cart" class="d-flex flex-column mx-3">
             <div class="d-flex justify-content-center">
               <b-img src="~/assets/images/icons/cart.png" width="60" height="60"/>
             </div>
             <div class="d-flex justify-content-center">My Cart</div>
           </b-nav-item>
 
-          <b-nav-item href="#" class="d-flex flex-column">
+          <b-nav-item to="/login" class="d-flex flex-column">
             <div class="d-flex justify-content-center">
               <b-img src="~/assets/images/icons/profile.png" width="60" height="60"/>
             </div>
@@ -55,3 +55,11 @@ export default {
 
 }
 </script>
+
+<style lang="scss" scoped>
+
+.the-header {
+  font-size: 1rem;
+}
+
+</style>
