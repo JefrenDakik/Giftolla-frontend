@@ -24,21 +24,21 @@
         <b-navbar-nav class="ml-auto">
           <b-nav-item to="/wishlist" class="d-flex flex-column">
             <div class="d-flex justify-content-center">
-              <b-img src="~/assets/images/icons/heart.png" width="60" height="60"/>
+              <b-img src="~/assets/images/icons/heart.png" width="40" height="40"/>
             </div>
             <div class="d-flex justify-content-center">Whishlist</div>
           </b-nav-item>
 
           <b-nav-item to="/my-cart" class="d-flex flex-column mx-3">
             <div class="d-flex justify-content-center">
-              <b-img src="~/assets/images/icons/cart.png" width="60" height="60"/>
+              <b-img src="~/assets/images/icons/cart.png" width="40" height="40"/>
             </div>
             <div class="d-flex justify-content-center">My Cart</div>
           </b-nav-item>
 
           <b-nav-item to="/login" class="d-flex flex-column">
             <div class="d-flex justify-content-center">
-              <b-img src="~/assets/images/icons/profile.png" width="60" height="60"/>
+              <b-img src="~/assets/images/icons/profile.png" width="40" height="40"/>
             </div>
             <div class="d-flex justify-content-center">Login</div>
           </b-nav-item>

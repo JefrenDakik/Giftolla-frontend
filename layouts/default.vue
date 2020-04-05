@@ -1,14 +1,14 @@
 <template>
   <div id="app">
     <TheHeader/>
-    <nuxt class="container-fluid"/>
+    <nuxt class="container-fluid mb-5 mt-2"/>
     <!-- <hr class="bg-dark"> -->
     <TheFooter/>
   </div>
 </template>
 
 <script>
-import TheHeader from "@/components/Navigation/TheHeader"
+import TheHeader from "@/components/TheHeader"
 import TheFooter from "@/components/TheFooter"
 
 export default {
@@ -19,7 +19,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="sass">
 
 </style>
 

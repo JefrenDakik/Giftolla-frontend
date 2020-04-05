@@ -50,8 +50,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.home {
-}
 
 .img {
   max-width: 40px;

@@ -35,18 +35,38 @@ hr {
 
 .active-link {
   color: $dark-grey;
+  // text-decoration: none;
+  // @extend .aileron-thin;
+}
+
+// .active-link:hover {
+//   color: $galapagos-green;
+// }
+
+.link {
+  color: $dark-grey;
   @extend .aileron-thin;
 }
 
-.active-link:hover {
+.link:hover {
   color: $galapagos-green;
+}
+
+.clickable {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.clickable:hover {
+  color: $galapagos-green;
+  text-decoration: none;
 }
 
 /*============================================================================*/
 
 
 /*=============================================================================
-  Edited bootstrap classes
+  bootstrap classes
   =============================================================================*/
 
 /* Changed colors of the navbar items */
@@ -60,6 +80,32 @@ hr {
 
 .dropdown-item:hover, .dropdown-item:focus {
   color: $galapagos-green;
+}
+/*******/
+
+/* add class related to table */
+.thead-tr-class {
+  @extend .text-center;
+  th {
+    border-top: none !important;
+    border-bottom: none !important;
+    @extend .bnq.font-xs;
+    @extend .bnq.elegant;
+  }
+}
+
+.tbody-tr-class {
+  @extend .text-center;
+  td {
+    @extend .align-middle;
+    @extend .aileron-thin;
+  }
+}
+
+.table th, .table td {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 1px solid $dark-grey;
 }
 /*******/
 

@@ -14,8 +14,8 @@
         class="col-sm-5">
       </AppInput>
 
-      <nuxt-link to="/" class="mt-3">Forgot Your Password?</nuxt-link>
-      <nuxt-link to="/signup" class="">Don't Have an Account? Sign Up Here</nuxt-link>
+      <nuxt-link to="/" class="link mt-3">Forgot Your Password?</nuxt-link>
+      <nuxt-link to="/signup" class="link">Don't Have an Account? Sign Up Here</nuxt-link>
 
       <AppButton class="bnq button-md mt-3">
         Login

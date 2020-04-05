@@ -23,6 +23,7 @@ export default {
   ** Global CSS
   */
   css: [
+    '~/assets/styles/colors.scss',
     '~/assets/styles/main.scss',
   ],
   /*
@@ -42,7 +43,11 @@ export default {
   modules: [
     // Doc: https://bootstrap-vue.js.org
     'bootstrap-vue/nuxt',
+    '@nuxtjs/style-resources',
   ],
+  styleResources: {
+    scss: './assets/styles/colors.scss'
+  },
   /*
   ** Build configuration
   */
