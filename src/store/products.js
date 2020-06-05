@@ -57,6 +57,10 @@ export const mutations = {
 
 }
 
+export const actions = {
+  
+}
+
 export const getters = {
   getProductById: (state) => (id) => {
     const product = state.productsList.find(product => product.id === id)

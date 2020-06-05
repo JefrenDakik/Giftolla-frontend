@@ -19,6 +19,9 @@ export default {
     ContactUs,
     AboutUs,
     Products,
+  },
+  created() {
+
   }
 }
 </script>

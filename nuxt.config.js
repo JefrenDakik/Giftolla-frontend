@@ -15,6 +15,7 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
+  srcDir: 'src/',
   /*
   ** Customize the progress-bar color
   */
@@ -30,7 +31,10 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '~/plugins/vee-validate'
+    '~/plugins/core-components',
+    '~/plugins/vee-validate',
+    '~/plugins/inject-api',
+    '~/plugins/access-token-watch',
   ],
   /*
   ** Nuxt.js dev-modules
@@ -44,7 +48,11 @@ export default {
     // Doc: https://bootstrap-vue.js.org
     'bootstrap-vue/nuxt',
     '@nuxtjs/style-resources',
+    '@nuxtjs/axios'
   ],
+  axios: {
+    baseURL: 'http://localhost:3001'
+  },
   styleResources: {
     scss: './assets/styles/colors.scss'
   },
@@ -61,9 +69,15 @@ export default {
     extend (config, ctx) {
     }
   },
+  env: {
+  },
   router: {
     linkActiveClass: 'active-link',
     linkExactActiveClass: 'active-link',
     linkPrefetchedClass: 'active-link'
+  },
+  transition: {
+    name: 'fade',
+    mode: 'out-in'
   }
 }

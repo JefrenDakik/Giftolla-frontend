@@ -42,14 +42,11 @@
 </template>
 
 <script>
-import AppCounter from '@/components/App/form/AppCounter'
+
 import img from '@/static/products/img1.jpeg'
 
 export default {
   name: 'CartProductList',
-  components: {
-    AppCounter
-  },
   data() {
     return {
       img,

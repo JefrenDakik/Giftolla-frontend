@@ -14,13 +14,15 @@
 </template>
 
 <script>
-import AppButton from "@/components/App/form/AppButton";
+
 import CartProductList from "@/components/BeUnique/cart/CartProductList"
 
 export default {
   components: {
-    AppButton,
     CartProductList
+  },
+  created() {
+    this.$store.dispatch('auth/logout')
   }
 }
 </script>

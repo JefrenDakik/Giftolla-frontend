@@ -42,15 +42,9 @@
 </template>
 
 <script>
-import AppCounter from "@/components/App/form/AppCounter"
-import AppColorPicker from "@/components/App/form/AppColorPicker"
 
 export default {
   name: 'ProductDetails',
-  components: {
-    AppCounter,
-    AppColorPicker,
-  },
   props: {
     product: {
       type: Object,

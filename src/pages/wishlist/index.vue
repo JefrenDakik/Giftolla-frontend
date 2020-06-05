@@ -11,11 +11,8 @@
 </template>
 
 <script>
-import AppButton from "@/components/App/form/AppButton";
 
 export default {
-  components: {
-    AppButton
-  }
+  middleware: 'auth',
 }
 </script>
