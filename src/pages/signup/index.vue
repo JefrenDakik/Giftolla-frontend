@@ -3,8 +3,14 @@
     <h1 class="bnq stoner font-xl text-center">
       signup
     </h1>
-    <ValidationObserver>
-      <form class="d-flex flex-column align-items-center form-group row">
+    <ValidationObserver ref="form" v-slot="{ handleSubmit }">
+      <form @submit.prevent="handleSubmit(onSubmit)"
+        class="d-flex flex-column align-items-center form-group row">
+        <AppInput
+          name="name" label="Name" rules="required" class="col-sm-5"
+          v-model="form.name">
+        </AppInput>
+
         <AppInput
           name="email" label="Email" rules="required|email" class="col-sm-5"
           v-model="form.email">
@@ -26,7 +32,7 @@
         <nuxt-link to="/login" class="link">Already Have an Account? Login Here</nuxt-link>
 
         <AppButton class="bnq button-md mt-3"
-          @click="signUp">
+          type="submit">
           Create Account
         </AppButton>
       </form>
@@ -35,24 +41,39 @@
 </template>
 
 <script>
-import { ValidationObserver } from 'vee-validate';
+import { mapActions } from "vuex"
 
 export default {
-  components: {
-    ValidationObserver,
-  },
   data() {
     return {
       form: {
+        name: '',
         email: '',
         password: '',
-        confirmPassword: ''
+        confirmPassword: '',
       }
     }
   },
   methods: {
-    async signUp() {
-      console.log(this.form)
+    ...mapActions({
+      signUp: 'auth/signUp'
+    }),
+    async onSubmit() {
+      try {
+        const { name, email, password, confirmPassword } = this.form
+        const response = await this.signUp({
+          name,
+          email, 
+          password,
+          confirmPassword,
+        })
+
+        if(response) {
+          this.$router.push({name: 'index'})
+        }
+      } catch (error) {
+        console.log(error)
+      }
     }
   }
 }

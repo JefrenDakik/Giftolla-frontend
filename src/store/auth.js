@@ -1,6 +1,7 @@
 import Cookie from 'js-cookie'
 
 export const state = () => ({
+  name: null,
   token: null,
   email: null,
 })
@@ -17,6 +18,12 @@ export const mutations = {
     state.email = email
     if (process.client) {
       localStorage.setItem('email', email)
+    }
+  },
+  setName(state, name) {
+    state.name = name
+    if (process.client) {
+      localStorage.setItem('name', name)
     }
   },
   clearAuthData(state) {
@@ -36,14 +43,38 @@ export const actions = {
     try {
       const { email, password } = authData 
       const customerData = await this.$api.authService.signIn(email, password)
-      
+
       if (customerData) {
         vuexContext.commit("setToken", customerData.token)
+        vuexContext.commit('setEmail', customerData.email)
+        vuexContext.commit('setName', customerData.name)
       } 
 
       return customerData
     } catch (error) {
       vuexContext.commit('clearAuthData')
+      console.log(error)
+    }
+  },
+  async signUp(vuexContext, authData) {
+    try {
+
+      const { name, email, password, confirmPassword } = authData
+      const customerData = await this.$api.authService.signUp(
+        name,
+        email,
+        password,
+        confirmPassword
+      )
+      
+      if (customerData) {
+        vuexContext.commit("setToken", customerData.token)
+        vuexContext.commit('setEmail', customerData.email)
+        vuexContext.commit('setName', customerData.name)
+      }
+
+      return customerData
+    } catch (error) {
       console.log(error)
     }
   },

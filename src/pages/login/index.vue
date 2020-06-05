@@ -3,27 +3,30 @@
     <h1 class="bnq stoner font-xl text-center">
       login
     </h1>
-    <form class="d-flex flex-column align-items-center form-group row">
-      <AppInput
-        name="email" label="Email" rules="required|email" 
-        class="col-sm-5"
-        v-model="form.email">
-      </AppInput>
+    <ValidationObserver ref="form" v-slot="{ handleSubmit }">
+      <form @submit.prevent="handleSubmit(onSubmit)" 
+        class="d-flex flex-column align-items-center form-group row">
+        <AppInput
+          name="email" label="Email" rules="required|email" 
+          class="col-sm-5"
+          v-model="form.email">
+        </AppInput>
 
-      <AppInput
-        name="password" label="Password" type="password" rules="required" 
-        class="col-sm-5"
-        v-model="form.password">
-      </AppInput>
+        <AppInput
+          name="password" label="Password" type="password" rules="required" 
+          class="col-sm-5"
+          v-model="form.password">
+        </AppInput>
 
-      <nuxt-link to="/" class="link mt-3">Forgot Your Password?</nuxt-link>
-      <nuxt-link to="/signup" class="link">Don't Have an Account? Sign Up Here</nuxt-link>
+        <nuxt-link to="/" class="link mt-3">Forgot Your Password?</nuxt-link>
+        <nuxt-link to="/signup" class="link">Don't Have an Account? Sign Up Here</nuxt-link>
 
-      <AppButton class="bnq button-md mt-3" 
-        @click="login">
-        Login
-      </AppButton>
-    </form>
+        <AppButton class="bnq button-md mt-3" 
+          type="submit">
+          Login
+        </AppButton>
+      </form>
+    </ValidationObserver>
   </div>
 </template>
 
@@ -43,21 +46,22 @@ export default {
     ...mapActions({
       signIn: 'auth/signIn'
     }),
-    async login() {
+    async onSubmit() {
       try {
         const { email, password } = this.form
         const auth = await this.signIn({
-          email, 
+          email,
           password,
         })
 
         if(auth) {
           this.$router.push({name: 'index'})
+        } else {
+          this.$refs.form.setErrors({'email': ['worng email or password']});
         }
       } catch (error) {
         console.log(error)
       }
-      
     }
   }
 }

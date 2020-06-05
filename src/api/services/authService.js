@@ -15,4 +15,13 @@ export default class AuthService {
       console.log(error)
     })
   }
+
+  async signUp(name, email, password, confirmPassword) {
+    return await this.axios.$post(endpoints.customer.signUp,{
+      name,
+      email,
+      password,
+      confirmPassword,
+    })
+  }
 }
