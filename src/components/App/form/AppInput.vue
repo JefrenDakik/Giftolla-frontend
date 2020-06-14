@@ -5,7 +5,9 @@
       <input
         :name="$attrs.name"
         :type="$attrs.type"
+        :multiple="$attrs.multiple"
         v-model="value$"
+        @change="emitEvent"
         :readonly="readOnly"
         class="bnq form-control"/>
       <div class="text-danger">{{ errors[0] }}</div>
@@ -41,7 +43,12 @@ export default {
       }
     },
     value$(value) {
-      this.$emit('input', value)
+        this.$emit('input', value)
+    },
+  },
+  methods: {
+    emitEvent(event) {
+      this.$emit('change', event)
     }
   }
 }

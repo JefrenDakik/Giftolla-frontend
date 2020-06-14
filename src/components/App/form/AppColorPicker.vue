@@ -23,13 +23,8 @@ export default {
   },
   data() {
     return {
-      // colors: [
-      //   { id: 1, name: 'red', hexadecimal: '#FF0000', availabiity: true},
-      //   { id: 2, name: 'blue', hexadecimal: '#0000FF', availabiity: false},
-      //   { id: 3, name: 'yellow', hexadecimal: '#FFFF00', availabiity: true},
-      // ],
       colors: this.colorsList,
-      pickedColorIndex: 1,
+      pickedColorIndex: 0,
     }
   },
   computed: {
@@ -56,8 +51,8 @@ export default {
 }
 
 .color-box {
-  width: 5rem;
-  height: 3rem;
+  width: 4em;
+  height: 2em;
 }
 
 .bordered {

@@ -1,15 +1,19 @@
 <template>
   <div>
     <h1 class="bnq stoner font-xl text-center">
-      Our Products
+      Books
     </h1>
-    <MainProductsList :products="products"/>
+    <MainProductsList :products="getProducts" filterCategory="Books"/>
+    <h1 class="bnq stoner font-xl text-center mt-4">
+      Cards
+    </h1>
+    <MainProductsList :products="getProducts" filterCategory="Cards"/>
   </div>
 </template>
 
 <script>
 import MainProductsList from "@/components/BeUnique/products/MainProductsList";
-import { mapState } from "vuex";
+import { mapGetters } from "vuex";
 
 export default {
   name: 'Products',
@@ -17,8 +21,8 @@ export default {
     MainProductsList
   },
   computed: {
-    ...mapState({
-      products: state => state.products.productsList,
+    ...mapGetters({
+      getProducts: 'product/getProducts'
     }),
   },
 }

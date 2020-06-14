@@ -12,6 +12,7 @@ import Home from '@/components/Home'
 import ContactUs from '@/components/ContactUs'
 import AboutUs from '@/components/AboutUs'
 import Products from "@/components/Products";
+import axios from 'axios'
 
 export default {
   components: {
@@ -20,9 +21,6 @@ export default {
     AboutUs,
     Products,
   },
-  created() {
-
-  }
 }
 </script>
 

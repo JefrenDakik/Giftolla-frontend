@@ -14,7 +14,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      getProductById: 'products/getProductById'
+      getProductById: 'product/getProductById'
     }),
     product() {
       const id = Number(this.$route.params.id)

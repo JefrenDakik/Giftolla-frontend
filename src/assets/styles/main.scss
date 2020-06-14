@@ -18,6 +18,19 @@ html, body, #app {
   flex: 1;
 }
 
+/* this is to show the scrollbar on small screens like the iphone s5*/
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: $galapagos-green;
+  box-shadow: 0 0 1px $galapagos-green;
+}
+/*******/
+
 hr {
   width: 100%;
 }

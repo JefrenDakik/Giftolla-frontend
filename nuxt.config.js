@@ -48,10 +48,13 @@ export default {
     // Doc: https://bootstrap-vue.js.org
     'bootstrap-vue/nuxt',
     '@nuxtjs/style-resources',
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
   ],
   axios: {
-    baseURL: 'http://localhost:3001'
+    baseURL: 'http://localhost:8080',
+    // credentials: false,
+    // proxy: true,
+    // retry: { retries: 3 }
   },
   styleResources: {
     scss: './assets/styles/colors.scss'
@@ -70,6 +73,7 @@ export default {
     }
   },
   env: {
+    baseUrl: 'http://localhost:8080'
   },
   router: {
     linkActiveClass: 'active-link',
@@ -77,7 +81,7 @@ export default {
     linkPrefetchedClass: 'active-link'
   },
   transition: {
-    name: 'fade',
-    mode: 'out-in'
+    // name: 'fade',
+    // mode: 'out-in'
   }
 }

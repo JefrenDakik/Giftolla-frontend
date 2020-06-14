@@ -30,9 +30,10 @@ export default {
 
 .app-button {
   width: 100%;
-  border-radius: 50px;
+  border-radius: 6px;
   background-color: $galapagos-green;
   color: white;
+  width: auto;
 }
 
 .app-button:hover {

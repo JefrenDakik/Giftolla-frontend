@@ -3,26 +3,61 @@
     <h1 class="bnq stoner font-xl mb-5">
       My Cart
     </h1>
-    <!-- <p>Your cart is currently empty</p> -->
+    
+    <p v-if="getCart.length == 0">Your cart is currently empty</p>
+    <CartProductList v-else :cart="getCart"/>
 
-    <CartProductList/>
+    <div class="d-flex flex-row mt-5 px-md-5" 
+      :class="className">
+      <AppButton class="bnq mr-2">
+        CONTINUE SHOPPING
+      </AppButton>
 
-    <AppButton class="bnq button-md mt-5">
-      Shop Now
-    </AppButton>
+      <AppButton v-if="getCart.length != 0" class="bnq"
+        @click="checkout">
+        CHECKOUT
+      </AppButton>
+    </div>
+    
   </div>
 </template>
 
 <script>
 
 import CartProductList from "@/components/BeUnique/cart/CartProductList"
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   components: {
     CartProductList
   },
+  computed: {
+    ...mapGetters({
+      getCart: 'cart/getCart',
+      isAuthenticated: 'auth/isAuthenticated'
+    }),
+    className: function () {
+      if(this.getCart.length == 0) {
+        return 'align-items-center'
+      } else {
+        return 'ml-auto'
+      }
+    }
+  },
+  methods: {
+    ...mapActions({
+      
+    }),
+    checkout() {
+      if(this.isAuthenticated) {
+        
+      } else {
+        this.$router.push({ name: 'login' })
+      }
+    }
+  },
   created() {
-    this.$store.dispatch('auth/logout')
+    // this.$store.dispatch('auth/logout')
   }
 }
 </script>

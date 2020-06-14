@@ -46,8 +46,8 @@ export const actions = {
 
       if (customerData) {
         vuexContext.commit("setToken", customerData.token)
-        vuexContext.commit('setEmail', customerData.email)
-        vuexContext.commit('setName', customerData.name)
+        vuexContext.commit('setEmail', customerData.customer.email)
+        vuexContext.commit('setName', customerData.customer.name)
       } 
 
       return customerData
@@ -69,8 +69,8 @@ export const actions = {
       
       if (customerData) {
         vuexContext.commit("setToken", customerData.token)
-        vuexContext.commit('setEmail', customerData.email)
-        vuexContext.commit('setName', customerData.name)
+        vuexContext.commit('setEmail', customerData.customer.email)
+        vuexContext.commit('setName', customerData.customer.name)
       }
 
       return customerData
@@ -80,7 +80,7 @@ export const actions = {
   },
   //check if token alredy exists in local storage and in cookie on server
   initAuth(vuexContext, req) {
-    let token
+    let token, name, email
     if(req) {
       if(!req.headers.cookie) {
         return
@@ -95,10 +95,14 @@ export const actions = {
 
     } else {
       token = localStorage.getItem("token")
+      name = localStorage.getItem("name")
+      email = localStorage.getItem("email")
     }
 
     if(token) {
       vuexContext.commit('setToken', token)
+      vuexContext.commit('setEmail', email)
+      vuexContext.commit('setName', name)
     }
   },
   logout(vuexContext) {

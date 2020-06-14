@@ -70,6 +70,8 @@ export default {
 
         if(response) {
           this.$router.push({name: 'index'})
+        } else {
+          this.$refs.form.setErrors({'email': ['email already exists']});
         }
       } catch (error) {
         console.log(error)

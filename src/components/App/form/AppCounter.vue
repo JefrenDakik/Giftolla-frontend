@@ -3,11 +3,11 @@
     <div class="w-100">{{ label }}</div>
 
     <div class="d-flex flex-row" :class="{ 'justify-content-center': center}">
-      <button @click="decrement" class="counter-button ">-</button>
+      <button v-if="!hideCountButtons" @click="decrement" class="counter-button ">-</button>
 
       <input type="text" class="counter-input mx-2 text-center " readonly :value="count">
 
-      <button @click="increment" class="counter-button ">+</button>
+      <button v-if="!hideCountButtons" @click="increment" class="counter-button ">+</button>
     </div>
   </div>
 </template>
@@ -27,6 +27,10 @@ export default {
     center: {
       type: Boolean,
       default: false,
+    },
+    hideCountButtons: {
+      type: Boolean,
+      default: false,
     }
   },
   data() {
@@ -38,11 +42,12 @@ export default {
     decrement() {
       if (this.count > 1) {
         this.count--  
-        // this.$emit()
+        this.$emit('updateCount', this.count)
       }
     },
     increment() {
       this.count++
+      this.$emit('updateCount', this.count)
     },
   }
 }
@@ -72,7 +77,7 @@ export default {
     border: 0.8px solid $dark-grey !important;
   }
 
-  .counter-wrapper {
-    // width: 20vw;
-  }
+  // .counter-wrapper {
+  //   // width: 20vw;
+  // }
 </style>

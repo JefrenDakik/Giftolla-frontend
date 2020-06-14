@@ -2,7 +2,7 @@
   <div class="the-header bnq elegant">
     <b-navbar toggleable="lg" type="light" variant="faded">
       <b-navbar-brand to="/">
-        <b-img src="~/assets/images/logo.png" width="100" height="100"/>
+        <b-img src="~/assets/images/logo.png" width="50" height="50"/>
       </b-navbar-brand>
 
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>

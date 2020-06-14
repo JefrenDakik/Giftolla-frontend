@@ -1,11 +1,14 @@
 <template>
-  <div class="cart-product-list px-md-5 table-responsive">
+  <div class="wishlist-product-list px-md-5 table-responsive">
     <b-table hover foot-clone :items="items" :fields="fields" class="table"
       thead-tr-class="thead-tr-class" tbody-tr-class="tbody-tr-class">
 
-      <template v-slot:cell(remove)="data">
-        <div class="font-weight-bold clickable" 
-          @click="removeProduct(data.item.pickedColor.productId)">X
+      <template v-slot:cell(select)="data">
+        <div v-if="!data.item.pickedColor.outOfStock" class="font-weight-bold clickable" >
+          <AppCheckbox :checked="data.item.checked" @change="onChange(data.item, $event)"/>
+        </div>
+        <div v-else class="text-danger">
+          out of stock
         </div>
       </template>
 
@@ -14,7 +17,7 @@
       </template>
 
       <template v-slot:cell(quantity)="data">
-        <AppCounter label="" :value="data.value" center
+        <AppCounter hideCountButtons label="" :value="data.value" center
           @updateCount="onUpdateCount(data.item.productId, $event)"/>
       </template>
 
@@ -29,6 +32,12 @@
       </template>
 
       <template v-slot:foot(name)>
+      </template>
+
+      <template v-slot:cell(name)="data">
+        {{ data.item.name }}
+        <AppButton @click="removeProduct(data.item.pickedColor.productId)" 
+          class="bnq mt-2">Remove</AppButton>
       </template>
 
       <template v-slot:foot(pickedColor)>
@@ -61,9 +70,9 @@ import { mapActions } from 'vuex'
 import img from '@/static/products/img1.jpeg'
 
 export default {
-  name: 'CartProductList',
+  name: 'WishlistProductList',
   props: {
-    cart: {
+    wishlist: {
       type: Array,
       required: true
     }
@@ -73,7 +82,7 @@ export default {
       img,
       fields: [
         {
-          key: 'remove',
+          key: 'select',
           label: ''
         },
         {
@@ -101,29 +110,33 @@ export default {
           label: 'TOTAL'
         }
       ],
-      items: this.cart
+      items: this.wishlist
     }
   },
   computed: {
     totalPrice: function() {
-      let cartTotalPrice = 0
-      this.items.forEach(cartItem => {
-        cartTotalPrice += cartItem.price * cartItem.quantity
+      let wishlistTotalPrice = 0
+      this.items.forEach(wishlistItem => {
+        wishlistTotalPrice += wishlistItem.price * wishlistItem.quantity
       })
-      return cartTotalPrice
+      return wishlistTotalPrice
     }
   },
   methods: {
     ...mapActions({
-      updateCartItemQuantity: 'cart/updateCartItemQuantity',
-      removeCartItem: 'cart/removeCartItem'
+      removeProductFromWishlist: 'wishlist/removeProductFromWishlist',
+      checkProduct: 'wishlist/checkProduct'
     }),
     onUpdateCount(productId, count) {
       const data = { productId, count }
       this.updateCartItemQuantity(data)
     },
-    removeProduct(productId) {
-      this.removeCartItem(productId)
+    async onChange(product, checked) {
+      const productId = product.pickedColor.productId
+      await this.checkProduct({ productId, checked })
+    },
+    async removeProduct(productId) {
+      await this.removeProductFromWishlist(productId)
     }
   }
 }
