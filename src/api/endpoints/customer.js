@@ -1,4 +1,6 @@
+const baseUrl = '/auth'
+
 export default {
-  signIn: '/auth/signin',
-  signUp: '/auth/signup'
+  signIn: baseUrl + '/signin',
+  signUp: baseUrl + '/signup'
 }

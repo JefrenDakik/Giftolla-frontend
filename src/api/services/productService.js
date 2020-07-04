@@ -16,7 +16,7 @@ export default class ProductService {
   // }
 
   async getProducts() {
-    return await this.axios.$get('/product/products')
+    return await this.axios.$get(endpoints.product.getProducts)
       .then(data => {
         return data
       })

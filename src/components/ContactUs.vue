@@ -1,6 +1,6 @@
 <template>
   <div class="home bnq font-l text-center">
-    <h1 class="bnq stoner font-xl">
+    <h1 class="bnq stoner font-xxl">
       Contact Us
     </h1>
     <p>Have any questions? We'd love to hear from you</p>

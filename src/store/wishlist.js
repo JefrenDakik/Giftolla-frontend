@@ -5,44 +5,123 @@ export const state = () => ({
 })
 
 export const mutations = {
-  addProductToWishlist(state, product) {
-    const wishlistItem = _.find(state.wishlist, { 'productId': product.pickedColor.productId })
+  SET_WISHLIST_PRODUCT(state, wishlistProduct) {
+    const index = _.findIndex(state.wishlist, function(item) {
+      return item.pickedColor.productId == wishlistProduct.pickedColor.productId
+    })
 
-    if(!wishlistItem) {
-      const newWishListItem = {
-        productId: product.pickedColor.productId,
-        name: product.name,
-        images: product.images,
-        pickedColor: product.pickedColor,
-        price: product.pickedColor.salePrice == 0 ? product.price : product.pickedColor.salePrice,
-        quantity: product.quantity,
-        checked: false,
+    // product is found so update it
+    if(index != -1) {
+      state.wishlist[index] = wishlistProduct
+    } else {
+      state.wishlist.push(wishlistProduct)
     }
 
-    state.wishlist.push(newWishListItem)
-    }
+    localStorage.setItem("wishlist", JSON.stringify(state.wishlist))
   },
-  removeProductFromWishlist(state, productId) {
+  REMOVE_WISHLIST_PRODUCT(state, productId) {
     const index = _.findIndex(state.wishlist, function(wishlistItem) {
       return wishlistItem.pickedColor.productId == productId
     })
     state.wishlist.splice(index, 1)
+
+    localStorage.setItem("wishlist", JSON.stringify(state.wishlist))
   },
-  checkProduct(state, { productId, checked }) {
-    const product = _.find(state.wishlist, { 'productId': productId})
-    product.checked = checked
-  }
+  SET_WISHLIST(state, wishlist) {
+    state.wishlist = wishlist
+    localStorage.setItem("wishlist", JSON.stringify(state.wishlist))
+  },
 }
 
 export const actions = {
-  async addProductToWishlist(vuexContext, product) {
-    vuexContext.commit('addProductToWishlist', product)
+  async initWishlist(vuexContext, req) {
+    try {
+      let wishlist = []
+        
+      const isAuth = vuexContext.rootGetters['auth/isAuthenticated']
+      if(isAuth) {
+        const data = await this.$api.wishlistService.getWishlist()
+
+        wishlist = await vuexContext.dispatch('resolveWishlist', data)
+        vuexContext.commit('SET_WISHLIST', wishlist)
+      } else {
+        const item = localStorage.getItem("wishlist")
+        if(item){
+          vuexContext.commit('SET_WISHLIST', JSON.parse(item))
+        }
+      }
+      
+    } catch (error) {
+      console.log(error)
+    }
+  },
+  async saveWishlist(vuexContext) {
+    try {
+      const wishlistItems = []
+
+      vuexContext.state.wishlist.forEach(wishlistProduct => {
+        const wishlistItem = {
+          productId: wishlistProduct.productId,
+          checked: wishlistProduct.checked,
+          quantity: wishlistProduct.quantity,
+        }
+
+        wishlistItems.push(wishlistItem)
+      })
+
+      this.$api.wishlistService.saveWishlist(wishlistItems)
+    } catch (error) {
+      console.log(error)
+    }
+  },
+  async saveWishlistProduct(vuexContext, wishlistItem) {
+    try {
+      const isAuth = vuexContext.rootGetters['auth/isAuthenticated']
+      if(isAuth) {
+        await this.$api.wishlistService.saveWishlistProduct(wishlistItem)
+      }
+      const wishlistProduct = await vuexContext.dispatch('resolveWishlistItem', wishlistItem)
+      vuexContext.commit('SET_WISHLIST_PRODUCT', wishlistProduct)
+      
+    } catch (error) {
+      console.log(error)
+    }
   },
   async removeProductFromWishlist(vuexContext, productId) {
-    vuexContext.commit('removeProductFromWishlist', productId)
+    try {
+      const isAuth = vuexContext.rootGetters['auth/isAuthenticated']
+      if(isAuth) {
+        await this.$api.wishlistService.deleteWishlistProduct(productId)
+      }
+      vuexContext.commit('REMOVE_WISHLIST_PRODUCT', productId)
+    } catch (error) {
+      console.log(error)
+    }
   },
-  async checkProduct(vuexContext, { productId, checked }) {
-    vuexContext.commit('checkProduct', { productId, checked })
+  async resolveWishlist(vuexContext, data) {
+    const wishlist = []
+
+    data.forEach(async wishlistItem => {
+      const wishlistProduct = await vuexContext.dispatch('resolveWishlistItem', wishlistItem)
+      wishlist.push(wishlistProduct)
+    })
+
+    return wishlist
+  },
+  async resolveWishlistItem(vuexContext, wishlistItem) {
+    const product = vuexContext.rootGetters['product/getProductAndPickedColorById'](wishlistItem.productId)
+
+    const wishlistProduct = {
+      productId: wishlistItem.productId,
+      name: product.name,
+      images: product.images,
+      pickedColor: product.pickedColor,
+      price: product.pickedColor.salePrice == 0 ? product.price : product.pickedColor.salePrice,
+      quantity: wishlistItem.quantity,
+      checked: wishlistItem.checked,
+    }
+
+    return wishlistProduct
   }
 }
 

@@ -1,5 +1,3 @@
-import Cookie from 'js-cookie'
-
 export const state = () => ({
   name: null,
   token: null,
@@ -9,32 +7,35 @@ export const state = () => ({
 export const mutations = {
   setToken(state, token) {
     state.token = token
-    Cookie.set('jwt', token)
+    this.$cookies.set('jwt', token)
     if (process.client) {
       localStorage.setItem("token", token)
     }
   },
   setEmail(state, email) {
     state.email = email
+    this.$cookies.set('email', email)
     if (process.client) {
       localStorage.setItem('email', email)
     }
   },
   setName(state, name) {
     state.name = name
+    this.$cookies.set('name', name)
     if (process.client) {
       localStorage.setItem('name', name)
     }
   },
   clearAuthData(state) {
-    Cookie.remove("jwt")
+    this.$cookies.removeAll()
     state.token = null
     state.email = null
+    state.name = null
     if(process.client) {
       localStorage.removeItem("token")
       localStorage.removeItem('email')
+      localStorage.removeItem('name')
     }
-    delete this.$axios.defaults.headers.common['Authorization']
   },
 }
 
@@ -45,9 +46,16 @@ export const actions = {
       const customerData = await this.$api.authService.signIn(email, password)
 
       if (customerData) {
+        vuexContext.commit('clearAuthData')
         vuexContext.commit("setToken", customerData.token)
         vuexContext.commit('setEmail', customerData.customer.email)
         vuexContext.commit('setName', customerData.customer.name)
+
+        await this.dispatch('wishlist/saveWishlist')
+        await this.dispatch('cart/uploadCart')
+        
+        await this.dispatch('address/clearAddresses')
+        this.$nuxtClientInit()
       } 
 
       return customerData
@@ -58,7 +66,6 @@ export const actions = {
   },
   async signUp(vuexContext, authData) {
     try {
-
       const { name, email, password, confirmPassword } = authData
       const customerData = await this.$api.authService.signUp(
         name,
@@ -71,6 +78,12 @@ export const actions = {
         vuexContext.commit("setToken", customerData.token)
         vuexContext.commit('setEmail', customerData.customer.email)
         vuexContext.commit('setName', customerData.customer.name)
+
+        await this.dispatch('address/clearAddresses')
+        await this.dispatch('order/clearOrder')
+
+        await this.dispatch('wishlist/saveWishlist')
+        await this.dispatch('cart/uploadCart')
       }
 
       return customerData
@@ -79,19 +92,27 @@ export const actions = {
     }
   },
   //check if token alredy exists in local storage and in cookie on server
-  initAuth(vuexContext, req) {
+  async initAuth(vuexContext, req) {
     let token, name, email
     if(req) {
       if(!req.headers.cookie) {
         return
       }
-      const jwtCookie = req.headers.cookie
-        .split(";")
-        .find(c => c.trim().startsWith("jwt="))
-      if(!jwtCookie) {
+
+      token = this.$cookies.get('jwt')
+      if(!token) {
         return
       }
-      token = jwtCookie.split("=")[1]
+
+      email = this.$cookies.get('email')
+      if(!email) {
+        return
+      }
+
+      name = this.$cookies.get('name')
+      if(!name) {
+        return
+      }
 
     } else {
       token = localStorage.getItem("token")
@@ -99,19 +120,24 @@ export const actions = {
       email = localStorage.getItem("email")
     }
 
-    if(token) {
+    if(token) 
       vuexContext.commit('setToken', token)
+    if(email)
       vuexContext.commit('setEmail', email)
+    if(name)
       vuexContext.commit('setName', name)
-    }
   },
-  logout(vuexContext) {
+  async logout(vuexContext) {
     vuexContext.commit("clearAuthData")
+    await this.dispatch('address/clearAddresses')
   }
 }
 
 export const getters = {
   isAuthenticated(state) {
     return state.token != null
+  },
+  getUserName(state) {
+    return state.name
   }
 }

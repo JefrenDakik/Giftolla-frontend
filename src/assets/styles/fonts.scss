@@ -1,34 +1,54 @@
 @font-face {
   font-family: 'stoner Regular';
   src: local('stoner Regular'), url('./fonts/stoner.woff') format('woff');
-  }
-
-@font-face {
-  font-family: 'elegant Ar';
-  src: local('elegant Ar'), url('./fonts/Elegant-ar.ttf') format('ttf');
 }
 
-@import url("https://use.typekit.net/tjr4zbr.css");
+@font-face {
+  font-family: 'rubik Bold';
+  src: local('rubik Bold'), url('./fonts/rubik-bold.woff') format('woff');
+}
 
+@font-face {
+  font-family: 'rubik';
+  src: local('rubik'), url('./fonts/rubik-regular.woff') format('woff');
+}
 
-.bnq.aileron {
-  font-family: aileron, sans-serif;
-  font-weight: 400;
+@font-face {
+  font-family: 'rubik Medium';
+  src: local('rubik Medium'), url('./fonts/rubik-medium.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'rubik Light';
+  src: local('rubik Light'), url('./fonts/rubik-light.woff') format('woff');
+}
+
+.bnq.rubik {
+  font-family: 'rubik';
   font-style: normal;
+  // font-weight: 400;
+}
 
-  .aileron-thin {
-    font-weight: 100;
-  }
+.bnq.rubik-bold {
+  font-family: 'rubik Bold';
+  font-style: normal;
+  // font-weight: 400;
+}
+
+.bnq.rubik-medium {
+  font-family: 'rubik Medium';
+  font-style: normal;
+  // font-weight: 400;
+}
+
+.bnq.rubik-light {
+  font-family: 'rubik Light';
+  font-style: normal;
+  // font-weight: 400;
 }
 
 .bnq.stoner {
   font-family: 'stoner Regular';
-  font-style: normal;
-  font-weight: normal;
-}
-
-.bnq.elegant {
-  font-family: 'elegant-ar', sans-serif;
   font-style: normal;
   font-weight: normal;
 }

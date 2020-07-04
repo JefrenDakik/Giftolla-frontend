@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="bnq stoner font-xl text-center">
+    <h1 class="bnq stoner font-xxl text-center">
       signup
     </h1>
     <ValidationObserver ref="form" v-slot="{ handleSubmit }">
@@ -31,7 +31,7 @@
         <nuxt-link to="/" class="link mt-3">Forgot Your Password?</nuxt-link>
         <nuxt-link to="/login" class="link">Already Have an Account? Login Here</nuxt-link>
 
-        <AppButton class="bnq button-md mt-3"
+        <AppButton class="bnq button-md mt-3 text-center"
           type="submit">
           Create Account
         </AppButton>
@@ -56,7 +56,7 @@ export default {
   },
   methods: {
     ...mapActions({
-      signUp: 'auth/signUp'
+      signUp: 'auth/signUp',
     }),
     async onSubmit() {
       try {

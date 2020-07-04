@@ -1,10 +1,10 @@
 <template>
   <div>
-    <h1 class="bnq stoner font-xl text-center">
+    <h1 class="bnq stoner font-xxl text-center">
       Books
     </h1>
     <MainProductsList :products="getProducts" filterCategory="Books"/>
-    <h1 class="bnq stoner font-xl text-center mt-4">
+    <h1 class="bnq stoner font-xxl text-center mt-4">
       Cards
     </h1>
     <MainProductsList :products="getProducts" filterCategory="Cards"/>

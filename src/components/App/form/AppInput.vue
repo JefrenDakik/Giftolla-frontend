@@ -1,11 +1,9 @@
 <template>
   <div class="d-flex flex-column">
-    <Label :for="$attrs.name" class="bnq font-l">{{ label }}</Label>
+    <Label :for="$attrs.name" class="bnq rubik">{{ label }}</Label>
     <ValidationProvider :name="$attrs.name" :rules="rules" v-slot="{ errors }" :vid="$attrs.vid">
       <input
-        :name="$attrs.name"
-        :type="$attrs.type"
-        :multiple="$attrs.multiple"
+        v-bind="$attrs"
         v-model="value$"
         @change="emitEvent"
         :readonly="readOnly"

@@ -1,4 +1,5 @@
+const baseUrl = '/products'
+
 export default {
-  uploadProduct: '/product/upload',
-  getProducts: '/product/products'
+  getProducts: baseUrl
 }

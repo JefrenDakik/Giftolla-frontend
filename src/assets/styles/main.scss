@@ -9,7 +9,7 @@
   =============================================================================*/
 
 html, body, #app {
-  @extend .bnq.aileron;
+  @extend .bnq.rubik;
   @extend .bnq.font-md;
   color: $dark-grey;
 
@@ -59,7 +59,7 @@ hr {
 
 .link {
   color: $dark-grey;
-  @extend .aileron-thin;
+  @extend .rubik-light;
 }
 
 .link:hover {
@@ -74,6 +74,11 @@ hr {
 .clickable:hover {
   color: $galapagos-green;
   text-decoration: none;
+}
+
+.color-box {
+  width: 2.5rem;
+  height: 1.8rem;
 }
 
 /*============================================================================*/
@@ -104,7 +109,7 @@ hr {
     border-top: none !important;
     border-bottom: none !important;
     @extend .bnq.font-xs;
-    @extend .bnq.elegant;
+    @extend .bnq.rubik;
   }
 }
 
@@ -112,7 +117,7 @@ hr {
   @extend .text-center;
   td {
     @extend .align-middle;
-    @extend .aileron-thin;
+    @extend .rubik-light;
   }
 }
 
@@ -120,6 +125,47 @@ hr {
     padding: 0.75rem;
     vertical-align: top;
     border-top: 1px solid $dark-grey;
+}
+
+.row-selected {
+  background-color: $galapagos-light-green;
+}
+/*******/
+
+/* add class related to tabs */
+.nav-wrapper-class {
+  background-color: $galapagos-light-green;
+  outline: none;;
+  border-bottom: 0.6px solid $dark-grey !important;
+}
+
+.title-link-class {
+  color: $galapagos-green;
+}
+
+.nav-tabs .nav-link {
+  border: none;
+}
+
+.nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+  border-top: 0.6px solid $dark-grey;
+  border-left: 0.6px solid $dark-grey;
+  border-right: 0.6px solid $dark-grey;
+}
+
+.title-link-class:hover {
+  color: $galapagos-green;
+}
+/*******/
+
+/* add class related to card */
+.card-header {
+  border-color: $dark-grey !important;
+}
+
+.card {
+  border: 0.6px solid $dark-grey;
+  border-top: 0.8px solid $dark-grey;
 }
 /*******/
 
@@ -130,7 +176,7 @@ hr {
   classes and styles for form inputs and buttons
   =============================================================================*/
 
-input:focus, textarea:focus {
+input:focus, textarea:focus, select:focus {
   box-shadow: 0 0 5px $galapagos-green !important;
   padding: 3px 0px 3px 3px;
   margin: 5px 1px 3px 0px;
@@ -140,7 +186,7 @@ input:focus, textarea:focus {
 .form-control {
   height: 3rem;
   border-radius: 0px;
-  border: 1px solid black;
+  border: 1px solid $dark-grey;
 }
 
 .bnq.button-md {

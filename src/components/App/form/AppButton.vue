@@ -2,7 +2,9 @@
   <div>
     <button 
       class="app-button btn"
-      :type="type" @click="onClick">
+      :class="{ 'btn-secondary': secondary}"
+      :type="type" @click="onClick"
+      :style="{ 'background-color': backgroundColor }">
       <slot></slot>
     </button>
   </div>
@@ -15,6 +17,13 @@ export default {
   props: {
     type: {
       default: 'button',
+    },
+    secondary: {
+      type: Boolean,
+      default: false
+    },
+    backgroundColor: {
+      type: String
     }
   },
   methods: {
@@ -38,6 +47,12 @@ export default {
 
 .app-button:hover {
   box-shadow: 0 0 5px $galapagos-green;
+  border: 1px solid $galapagos-green;
+}
+
+.btn-secondary {
+  background-color: white;
+  color: $dark-grey;
   border: 1px solid $galapagos-green;
 }
 

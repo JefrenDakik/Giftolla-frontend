@@ -1,6 +1,9 @@
 import AuthService from './services/authService'
 import ProductService from './services/productService'
 import CartService from './services/cartService'
+import StaticService from './services/staticService'
+import AddressService from './services/addressService'
+import WishlistService from './services/wishlistService'
 
 export default class Api {
   constructor(axios) {
@@ -8,5 +11,8 @@ export default class Api {
     this.authService = new AuthService(this.axios)
     this.productService = new ProductService(this.axios)
     this.cartService = new CartService(this.axios)
+    this.staticService = new StaticService(this.axios)
+    this.addressService = new AddressService(this.axios)
+    this.wishlistService = new WishlistService(this.axios)
   }
 }

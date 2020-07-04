@@ -1,14 +1,37 @@
 <template>
-  <div class="the-header bnq elegant">
-    <b-navbar toggleable="lg" type="light" variant="faded">
-      <b-navbar-brand to="/">
-        <b-img src="~/assets/images/logo.png" width="50" height="50"/>
-      </b-navbar-brand>
+  <div class="the-header bnq rubik">
+    <b-navbar toggleable="" type="light" variant="faded">
 
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
+      <b-navbar-brand to="/" class="ml-3 mr-auto">
+        <b-img src="~/assets/images/logo.png" width="50" height="50"/>
+      </b-navbar-brand>
+      
+    
+      <b-navbar-nav class="d-flex flex-row">
+        <b-nav-item v-if="isAuth" to="/profile">
+          <div class="d-flex flex-row align-items-center mr-2">
+            <div class="galapagos-green">{{ userName }}</div>
+            <div class="vertical-line ml-2"></div>
+          </div>
+        </b-nav-item>
+
+        <b-nav-item to="/wishlist">
+          <b-img src="~/assets/images/icons/heart.png" width="35" height="35"/>
+        </b-nav-item>
+
+        <b-nav-item to="/my-cart" class="mx-2">
+          <b-img src="~/assets/images/icons/cart.png" width="35" height="35"/>
+        </b-nav-item>
+
+        <b-nav-item :to="isAuth ? '/profile': '/login'">
+          <b-img src="~/assets/images/icons/profile.png" width="35" height="35"/>
+        </b-nav-item>
+      </b-navbar-nav>
+      
       <b-collapse id="nav-collapse" is-nav>
-        <b-navbar-nav fill class="w-50">
+        <b-navbar-nav>
           <b-nav-item href="#">HOME</b-nav-item>
 
           <b-nav-item-dropdown text="PRODUCTS" right>
@@ -20,46 +43,36 @@
           <b-nav-item href="#">ABOUT</b-nav-item>
           <b-nav-item href="#">CONTACT</b-nav-item>
         </b-navbar-nav>
-
-        <b-navbar-nav class="ml-auto">
-          <b-nav-item to="/wishlist" class="d-flex flex-column">
-            <div class="d-flex justify-content-center">
-              <b-img src="~/assets/images/icons/heart.png" width="40" height="40"/>
-            </div>
-            <div class="d-flex justify-content-center">Whishlist</div>
-          </b-nav-item>
-
-          <b-nav-item to="/my-cart" class="d-flex flex-column mx-3">
-            <div class="d-flex justify-content-center">
-              <b-img src="~/assets/images/icons/cart.png" width="40" height="40"/>
-            </div>
-            <div class="d-flex justify-content-center">My Cart</div>
-          </b-nav-item>
-
-          <b-nav-item to="/login" class="d-flex flex-column">
-            <div class="d-flex justify-content-center">
-              <b-img src="~/assets/images/icons/profile.png" width="40" height="40"/>
-            </div>
-            <div class="d-flex justify-content-center">Login</div>
-          </b-nav-item>
-        </b-navbar-nav>
       </b-collapse>
-  </b-navbar>
+
+    </b-navbar>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'TheHeader',
-
+  computed: {
+    ...mapGetters({
+      userName: 'auth/getUserName',
+      isAuth: 'auth/isAuthenticated'
+    })
+  }
 }
 </script>
 
 <style lang="scss" scoped>
+@import '@/assets/styles/colors.scss';
 
 .the-header {
   font-size: 1rem;
+}
+
+.vertical-line {
+  border-left: 1px solid $dark-grey;
+  height: 35px;
 }
 
 </style>

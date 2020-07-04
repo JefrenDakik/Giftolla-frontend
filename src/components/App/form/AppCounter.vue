@@ -77,7 +77,4 @@ export default {
     border: 0.8px solid $dark-grey !important;
   }
 
-  // .counter-wrapper {
-  //   // width: 20vw;
-  // }
 </style>

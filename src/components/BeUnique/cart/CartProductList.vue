@@ -25,7 +25,7 @@
       </template>
 
       <template v-slot:foot(images)>
-        <span class="bnq aileron-thin font-xs position-absolute">Shipping Calculated At Checkout</span>
+        <span class="bnq rubik-light font-xs position-absolute">Shipping Calculated At Checkout</span>
       </template>
 
       <template v-slot:foot(name)>
@@ -58,7 +58,6 @@
 
 <script>
 import { mapActions } from 'vuex'
-import img from '@/static/products/img1.jpeg'
 
 export default {
   name: 'CartProductList',
@@ -70,7 +69,6 @@ export default {
   },
   data() {
     return {
-      img,
       fields: [
         {
           key: 'remove',
@@ -115,23 +113,23 @@ export default {
   },
   methods: {
     ...mapActions({
-      updateCartItemQuantity: 'cart/updateCartItemQuantity',
-      removeCartItem: 'cart/removeCartItem'
+      saveCartProduct: 'cart/saveCartProduct',
+      removeCartProduct: 'cart/removeCartProduct'
     }),
     onUpdateCount(productId, count) {
-      const data = { productId, count }
-      this.updateCartItemQuantity(data)
+      const cartItem = {
+        productId,
+        quantity: count
+      }
+      this.saveCartProduct(cartItem)
     },
     removeProduct(productId) {
-      this.removeCartItem(productId)
+      this.removeCartProduct(productId)
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.color-box {
-  width: 2.5rem;
-  height: 1.8rem;
-}
+
 </style>

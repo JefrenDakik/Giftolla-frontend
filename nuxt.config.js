@@ -15,6 +15,9 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
+  server: {
+    port: 8000, // default: 3000
+  },
   srcDir: 'src/',
   /*
   ** Customize the progress-bar color
@@ -34,7 +37,11 @@ export default {
     '~/plugins/core-components',
     '~/plugins/vee-validate',
     '~/plugins/inject-api',
-    '~/plugins/access-token-watch',
+    '~/plugins/axios-interceptor',
+    {
+      src: '~/plugins/nuxt-client-init.client',
+      mode: 'client',
+    }
   ],
   /*
   ** Nuxt.js dev-modules
@@ -49,6 +56,7 @@ export default {
     'bootstrap-vue/nuxt',
     '@nuxtjs/style-resources',
     '@nuxtjs/axios',
+    'cookie-universal-nuxt',
   ],
   axios: {
     baseURL: 'http://localhost:8080',
@@ -76,6 +84,7 @@ export default {
     baseUrl: 'http://localhost:8080'
   },
   router: {
+    middleware: 'initAuth',
     linkActiveClass: 'active-link',
     linkExactActiveClass: 'active-link',
     linkPrefetchedClass: 'active-link'

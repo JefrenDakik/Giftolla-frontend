@@ -50,11 +50,6 @@ export default {
   width: 20vw;
 }
 
-.color-box {
-  width: 4em;
-  height: 2em;
-}
-
 .bordered {
   border: 1px solid black;
 }

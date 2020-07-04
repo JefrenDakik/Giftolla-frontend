@@ -4,7 +4,7 @@
     <div class="col-4 d-flex flex-column justify-content-center align-items-center pb-5">
       <b-img src="~/assets/images/welcome.png" fluid  alt="Responsive image" 
         class="title-img pt-3"/>
-      <p class="bnq elegant font-xs mt-2 text-center">
+      <p class="bnq rubik font-xs mt-2 text-center">
         Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
       </p>
     </div>

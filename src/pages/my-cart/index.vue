@@ -1,11 +1,13 @@
 <template>
   <div class="d-flex flex-column align-items-center justify-content-center">
-    <h1 class="bnq stoner font-xl mb-5">
+    <h1 class="bnq stoner font-xxl mb-5">
       My Cart
     </h1>
     
     <p v-if="getCart.length == 0">Your cart is currently empty</p>
-    <CartProductList v-else :cart="getCart"/>
+    <client-only v-else>
+      <CartProductList :cart="getCart"/>
+    </client-only>
 
     <div class="d-flex flex-row mt-5 px-md-5" 
       :class="className">
@@ -50,14 +52,11 @@ export default {
     }),
     checkout() {
       if(this.isAuthenticated) {
-        
+        this.$router.push({ name: 'checkout' })
       } else {
         this.$router.push({ name: 'login' })
       }
     }
   },
-  created() {
-    // this.$store.dispatch('auth/logout')
-  }
 }
 </script>

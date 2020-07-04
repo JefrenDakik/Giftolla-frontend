@@ -4,8 +4,12 @@
 
 
 @include media-breakpoint-up(xs) {
-  .bnq.font-xl {
+  .bnq.font-xxl {
     font-size: 10vw;
+  }
+
+  .bnq.font-xl {
+    font-size: 1.2rem;
   }
 
   .bnq.font-l {
@@ -22,8 +26,12 @@
 }
 
 @include media-breakpoint-up(sm) {
-  .bnq.font-xl {
+  .bnq.font-xxl {
     font-size: 10vw;
+  }
+
+  .bnq.font-xl {
+    font-size: 1.3rem;
   }
 
   .bnq.font-l {
@@ -31,7 +39,29 @@
   }
 
   .bnq.font-md {
-    font-size: 0.8rem;
+    font-size: 0.77rem;
+  }
+
+  .bnq.font-xs {
+    font-size: 0.55rem;
+  }
+}
+
+@include media-breakpoint-up(md) {
+  .bnq.font-xxl {
+    font-size: 10vw;
+  }
+
+  .bnq.font-xl {
+    font-size: 1.45rem;
+  }
+
+  .bnq.font-l {
+    font-size: 1.2rem;
+  }
+
+  .bnq.font-md {
+    font-size: 0.84rem;
   }
 
   .bnq.font-xs {
@@ -39,38 +69,24 @@
   }
 }
 
-@include media-breakpoint-up(md) {
-.bnq.font-xl {
-  font-size: 10vw;
-}
-
-.bnq.font-l {
-  font-size: 1.2rem;
-}
-
-.bnq.font-md {
-  font-size: 0.9rem;
-}
-
-.bnq.font-xs {
-  font-size: 0.7rem;
-}
-}
-
 @include media-breakpoint-up(lg) {
-.bnq.font-xl {
-  font-size: 10vw;
-}
+  .bnq.font-xxl {
+    font-size: 10vw;
+  }
 
-.bnq.font-l {
-  font-size: 1.5rem;
-}
+  .bnq.font-xl {
+    font-size: 1.75rem;
+  }
 
-.bnq.font-md {
-  font-size: 1.2rem;
-}
+  .bnq.font-l {
+    font-size: 1.5rem;
+  }
 
-.bnq.font-xs {
-  font-size: 0.9rem;
-}
+  .bnq.font-md {
+    font-size: 1.05rem;
+  }
+
+  .bnq.font-xs {
+    font-size: 0.75rem;
+  }
 }

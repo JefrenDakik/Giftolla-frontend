@@ -1,11 +1,13 @@
 <template>
   <div class="d-flex flex-column align-items-center">
-    <h1 class="bnq stoner font-xl mb-5">
+    <h1 class="bnq stoner font-xxl mb-5">
       Wishlist
     </h1>
 
     <p v-if="getWishlist.length == 0">Your Wishlist is empty</p>
-    <WishlistProductList v-else :wishlist="getWishlist"/>
+    <client-only v-else>
+      <WishlistProductList :wishlist="getWishlist"/>
+    </client-only>
 
     <div class="d-flex flex-row mt-5 px-md-5" 
       :class="className">
@@ -14,7 +16,7 @@
       </AppButton>
 
       <AppButton v-if="getWishlist.length != 0" class="bnq"
-        @click="addProductsToCart">
+        @click="addToCart">
         ADD TO CART
       </AppButton>
     </div>
@@ -29,11 +31,10 @@ export default {
   components:{
     WishlistProductList
   },
-  middleware: 'auth',
   computed: {
     ...mapGetters({
       getWishlist: 'wishlist/getWishlist',
-      isAuthenticated: 'auth/isAuthenticated'
+      isAuthenticated: 'auth/isAuthenticated',
     }),
     className: function () {
       if(this.getWishlist.length == 0) {
@@ -44,8 +45,23 @@ export default {
     },
   },
   methods: {
-    addProductsToCart() {
-      
+    ...mapActions({
+      saveCart: 'cart/saveCart',
+      removeProductFromWishlist: 'wishlist/removeProductFromWishlist'
+    }),
+    addToCart() {
+      const cartItems = []
+      this.getWishlist.forEach(product => {
+        if(product.checked && !product.pickedColor.outOfStock) {
+          cartItems.push({
+            productId: product.pickedColor.productId,
+            quantity: product.quantity,
+          })
+          this.removeProductFromWishlist(product.productId)
+        }
+      })
+
+      this.saveCart(cartItems)
     }
   }
 }

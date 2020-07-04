@@ -1,10 +1,10 @@
 <template>
   <div>
-    <h1 class="bnq stoner font-xl text-center">
+    <h1 class="bnq stoner font-xxl text-center">
       login
     </h1>
     <ValidationObserver ref="form" v-slot="{ handleSubmit }">
-      <form @submit.prevent="handleSubmit(onSubmit)" 
+      <form @submit.prevent="handleSubmit(onSubmit)"
         class="d-flex flex-column align-items-center form-group row">
         <AppInput
           name="email" label="Email" rules="required|email" 
@@ -21,7 +21,7 @@
         <nuxt-link to="/" class="link mt-3">Forgot Your Password?</nuxt-link>
         <nuxt-link to="/signup" class="link">Don't Have an Account? Sign Up Here</nuxt-link>
 
-        <AppButton class="bnq button-md mt-3" 
+        <AppButton class="bnq button-md mt-3 text-center" 
           type="submit">
           Login
         </AppButton>

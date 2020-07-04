@@ -1,27 +1,42 @@
 
 import endpoints from '../endpoints'
-import axios from 'axios'
 
 export default class CartService {
   constructor(axios) {
     this.axios = axios
   }
 
-  // async uploadProduct(image) {
-  //   return await this.axios.$post(endpoints.product.uploadProduct, image, {
-  //     headers: {
-  //       'Content-Type': 'multipart/form-data'
-  //     },
-  //   })
-  // }
+  async saveToCart(cartItems) {
+    return await this.axios.$post(endpoints.cart.saveCart, cartItems)
+      .then(data => {
+        return data
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  }
 
-  async saveCart(cart) {
-    // return await this.axios.$post('/cart/save')
-    //   .then(data => {
-    //     return data
-    //   })
-    //   .catch(error => {
-    //     console.log(error)
-    //   })
+  async getCart() {
+    return await this.axios.$get(endpoints.cart.getCart)
+      .then(data => {
+        return data
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  }
+
+  async deleteCartProduct(productId) {
+    return await this.axios.$delete(endpoints.cart.deleteCartProduct, {
+      data: {
+          productId
+        }
+      })
+      .then(data => {
+        return data
+      })
+      .catch(error => {
+        console.log(error)
+      })
   }
 }

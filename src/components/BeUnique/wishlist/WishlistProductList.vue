@@ -1,11 +1,12 @@
 <template>
   <div class="wishlist-product-list px-md-5 table-responsive">
-    <b-table hover foot-clone :items="items" :fields="fields" class="table"
-      thead-tr-class="thead-tr-class" tbody-tr-class="tbody-tr-class">
+    <b-table foot-clone :items="items" :fields="fields" class="table"
+      thead-tr-class="thead-tr-class" tb :tbody-tr-class="rowClass">
 
       <template v-slot:cell(select)="data">
-        <div v-if="!data.item.pickedColor.outOfStock" class="font-weight-bold clickable" >
-          <AppCheckbox :checked="data.item.checked" @change="onChange(data.item, $event)"/>
+        <div v-if="!data.item.pickedColor.outOfStock" 
+          class="font-weight-bold clickable">
+          <AppCheckbox :checked="data.item.checked" @change="onCheck(data.item, $event)"/>
         </div>
         <div v-else class="text-danger">
           out of stock
@@ -17,8 +18,7 @@
       </template>
 
       <template v-slot:cell(quantity)="data">
-        <AppCounter hideCountButtons label="" :value="data.value" center
-          @updateCount="onUpdateCount(data.item.productId, $event)"/>
+        <AppCounter hideCountButtons label="" :value="data.value" center/>
       </template>
 
       <template v-slot:cell(pickedColor)="data">
@@ -28,7 +28,7 @@
       </template>
 
       <template v-slot:foot(images)>
-        <span class="bnq aileron-thin font-xs position-absolute">Shipping Calculated At Checkout</span>
+        <span class="bnq rubik-light font-xs position-absolute">Shipping Calculated At Checkout</span>
       </template>
 
       <template v-slot:foot(name)>
@@ -36,7 +36,7 @@
 
       <template v-slot:cell(name)="data">
         {{ data.item.name }}
-        <AppButton @click="removeProduct(data.item.pickedColor.productId)" 
+        <AppButton secondary @click="removeProduct(data.item.pickedColor.productId)" 
           class="bnq mt-2">Remove</AppButton>
       </template>
 
@@ -120,31 +120,34 @@ export default {
         wishlistTotalPrice += wishlistItem.price * wishlistItem.quantity
       })
       return wishlistTotalPrice
-    }
+    },
   },
   methods: {
     ...mapActions({
       removeProductFromWishlist: 'wishlist/removeProductFromWishlist',
-      checkProduct: 'wishlist/checkProduct'
+      saveWishlistProduct: 'wishlist/saveWishlistProduct'
     }),
-    onUpdateCount(productId, count) {
-      const data = { productId, count }
-      this.updateCartItemQuantity(data)
-    },
-    async onChange(product, checked) {
+    async onCheck(product, checked) {
       const productId = product.pickedColor.productId
-      await this.checkProduct({ productId, checked })
+      const quantity = product.quantity
+      await this.saveWishlistProduct({ productId, checked, quantity })
     },
     async removeProduct(productId) {
       await this.removeProductFromWishlist(productId)
+    },
+    rowClass(item, type) {
+      if (!item || type !== 'row') return
+      if(item.checked) {
+        return ['row-selected', 'tbody-tr-class']
+      } else {
+        return 'tbody-tr-class'
+      }
     }
-  }
+  },
 }
 </script>
 
 <style lang="scss" scoped>
-.color-box {
-  width: 2.5rem;
-  height: 1.8rem;
-}
+@import '@/assets/styles/colors.scss';
+
 </style>

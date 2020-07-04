@@ -49,7 +49,7 @@
         class="mt-2"/>
       <div v-if="pickedColor.outOfStock" class="text-danger">COLOR OUT OF STOCK*</div>
 
-      <div class="bnq aileron-thin font-xs mt-2 mb-1">shipping calculated at checkout</div>
+      <div class="bnq rubik-light font-xs mt-2 mb-1">shipping calculated at checkout</div>
       <AppButton class="bnq" @click="addToCart">
         ADD TO CART
       </AppButton>
@@ -87,9 +87,8 @@ export default {
   },
   methods: {
     ...mapActions({
-      addProductsToCart: 'cart/addProductsToCart',
-      updateCartItemQuantity: 'cart/updateCartItemQuantity',
-      addProductToWishlist: 'wishlist/addProductToWishlist',
+      saveCartProduct: 'cart/saveCartProduct',
+      saveWishlistProduct: 'wishlist/saveWishlistProduct',
       removeProductFromWishlist: 'wishlist/removeProductFromWishlist'
     }),
     onUpdateCount(count) {
@@ -100,31 +99,30 @@ export default {
     },
     async addToWishlist() {
       try {
-        const product = { ...this.product }
-        product.pickedColor = this.pickedColor
-        product.quantity = this.quantity
-
-        await this.addProductToWishlist(product)
+        const wishlistItem = {
+          productId: this.pickedColor.productId,
+          quantity: this.quantity,
+          checked: false,
+        }
+        await this.saveWishlistProduct(wishlistItem)
       } catch (error) {
         console.log(error)
       }
     },
     async removeFromWishlist() {
-      this.removeProductFromWishlist(this.pickedColor.productId)
+      await this.removeProductFromWishlist(this.pickedColor.productId)
     },
     async addToCart() {
       if(this.pickedColor.outOfStock) {
         return
       }
 
-      const product = { ...this.product }
-      product.pickedColor = this.pickedColor
-      await this.addProductsToCart([product])
+      const cartItem = {
+        productId: this.pickedColor.productId,
+        quantity: this.quantity
+      }
+      await this.saveCartProduct(cartItem)
 
-      const productId = this.pickedColor.productId
-      const count = this.quantity
-      await this.updateCartItemQuantity({ count, productId })
-      
       this.$router.push({ name: 'my-cart' })
     }
   }
