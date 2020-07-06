@@ -9,9 +9,6 @@ export const mutations = {
   setAddresses(state, addresses) {
     state.addresses = addresses
   },
-  addAddress(state, address) {
-    state.addresses.push(address)
-  },
   CLEAR_ADDRESSES(state) {
     state.addresses = []
   }
@@ -23,11 +20,25 @@ export const actions = {
       const data = await this.$api.addressService.saveAddress(address)
 
       if (data) {
-        vuexContext.dispatch('getAddresses')
+        await vuexContext.dispatch('getAddresses')
       }
 
       return data
     } catch(error) {
+      console.log(error)
+    }
+  },
+  async removeAddress(vuexContext, addressId) {
+    try {
+      const isAuth = vuexContext.rootGetters['auth/isAuthenticated']
+      if(isAuth) {
+        const resp = await this.$api.addressService.deleteAddress(addressId)
+        
+        if(resp) {
+          await vuexContext.dispatch('getAddresses')
+        }
+      }
+    } catch (error) {
       console.log(error)
     }
   },

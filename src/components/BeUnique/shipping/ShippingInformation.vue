@@ -3,7 +3,7 @@
     <template v-if="addresses.length > 0">
       <h6 class="bnq rubik-medium mb-2 font-l">CHOOSE A SHIPPPING ADDRESS</h6>
       <client-only>
-        <AddressesList :addresses="addresses"
+        <AddressesList :addresses="addresses" :removable="removable"
           @showAddressForm="onShowAddressForm" @editAddress="onEditAddress"/>
       </client-only>
     </template>
@@ -23,6 +23,12 @@ export default {
     AddressesList,
     AddressForm,
   },
+  props: {
+    removable: {
+      type: Boolean,
+      default: false,
+    }
+  },
   data() {
     return {
       showAddressForm: false,
@@ -34,6 +40,13 @@ export default {
     ...mapGetters({
       addresses: ['address/getAddresses']
     })
+  },
+  watch: {
+    addresses(addresses) {
+      if(addresses.length == 0) {
+        this.showAddressForm = true
+      }
+    }
   },
   mounted() {
     if(this.addresses.length == 0) {
@@ -53,7 +66,7 @@ export default {
     },
     onEditAddress(editAddress) {
       this.editAddress = editAddress
-      this.showAddressForm = true
+      this.showAddressForm = !this.showAddressForm
     }
   }
 }

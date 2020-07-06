@@ -4,7 +4,7 @@
       <h6 class="bnq rubik-medium mb-2 font-l">CHOOSE A DEBIT/CREDIT CARD</h6>
             
       <client-only>
-        <PaymentCardsList v-if="paymentCards.length > 0" :cardsList="paymentCards"
+        <PaymentCardsList v-if="paymentCards.length > 0" :cardsList="paymentCards" :removable="removable"
           @showPaymentCardForm="onShowPaymentCardForm" @editPaymentCard="onEditPaymentCard"/>
       </client-only>
     </template>
@@ -26,6 +26,12 @@ export default {
     PaymentCardForm,
     OrderSummary,
   },
+  props: {
+    removable: {
+      type: Boolean,
+      default: false,
+    }
+  },
   data() {
     return {
       showPaymentCardForm: false,
@@ -37,6 +43,13 @@ export default {
     ...mapGetters({
       paymentCards: ['payment/getCards'],
     }),
+  },
+  watch: {
+    paymentCards(paymentCards) {
+      if(paymentCards.length == 0) {
+        this.showPaymentCardForm = true
+      }
+    }
   },
   mounted() {
     if(this.paymentCards.length == 0) {

@@ -1,7 +1,11 @@
 <template>
   <div class="address-item d-flex flex-row justify-content-between align-items-center py-3 px-4 my-1"
-    :class="{ 'background-green': selected }">
-    <AppRadioButton @change="onChange" :checked="selected" name="AddressGroup"/>
+    :class="{ 'background-green': selected && !removable }">
+    <div v-if="removable"  @click="onRemove"
+      class="bnq font-l font-weight-bold clickable">
+      x
+    </div>
+    <AppRadioButton v-else @change="onChange" :checked="selected" name="AddressGroup"/>
     
     <div class="d-flex flex-column text-center w-75">
       <div>ADDRESS {{ index + 1 }}</div>
@@ -12,11 +16,13 @@
       </div>
     </div>
 
-    <b-img src="~/assets/images/icons/edit.png" class="edit-icon" @click="editAddress"></b-img>
+    <b-img src="~/assets/images/icons/edit.png" class="edit-icon" @click="onEdit"></b-img>
   </div>
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
   name: 'AddressItem',
   props: {
@@ -31,6 +37,10 @@ export default {
     index: {
       type: Number,
       required: true,
+    },
+    removable: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
@@ -47,11 +57,18 @@ export default {
     }
   },
   methods: {
+    ...mapActions({
+      removeAddress: 'address/removeAddress'
+    }),
     onChange() {
       this.$emit('selectAddress', this.address)
     },
-    editAddress() {
+    onEdit() {
       this.$emit('editAddress', this.address)
+    },
+    async onRemove() {
+      const addressId = this.address.id
+      await this.removeAddress(addressId)
     }
   }
 }

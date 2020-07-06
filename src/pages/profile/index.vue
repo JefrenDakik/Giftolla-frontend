@@ -12,10 +12,10 @@
         
       </b-tab>
       <b-tab title="PAYMENT METHODS" title-link-class="title-link-class">
-        <PaymentInformation/>
+        <PaymentInformation removable/>
       </b-tab>
       <b-tab title="SHIPPING ADDRESSES" title-link-class="title-link-class">
-        <ShippingInformation/>
+        <ShippingInformation removable/>
       </b-tab>
     </b-tabs>
   </div>

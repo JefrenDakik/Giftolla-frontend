@@ -1,7 +1,7 @@
 <template>
   <div>
     <AddressItem v-for="(address, index) in addresses" :key="address.id"
-      :address="address" :selectedAddressId="selectedAddressId" :index="index"
+      :removable="removable" :address="address" :selectedAddressId="selectedAddressId" :index="index"
       @selectAddress="onSelectAddress" @editAddress="onEditAddress"/>
 
     <div class="add-address d-flex align-items-center justify-content-center w-100 clickable py-2"
@@ -24,6 +24,10 @@ export default {
     addresses: {
       type: Array,
       required: true,
+    },
+    removable: {
+      type: Boolean,
+      default: false,
     }
   },
   data() {

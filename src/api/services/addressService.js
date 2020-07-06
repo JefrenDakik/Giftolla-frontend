@@ -25,4 +25,18 @@ export default class AddressService {
       console.log(error)
     })
   }
+
+  async deleteAddress(addressId) {
+    return await this.axios.$delete(endpoints.address.deleteAddress, {
+      data: {
+          addressId
+        }
+      })
+      .then(data => {
+        return data
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  }
 }

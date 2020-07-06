@@ -5,7 +5,7 @@
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
       <b-navbar-brand to="/" class="ml-3 mr-auto">
-        <b-img src="~/assets/images/logo.png" width="50" height="50"/>
+        <b-img src="~/assets/images/logo.png" width="100" height="33.1"/>
       </b-navbar-brand>
       
     

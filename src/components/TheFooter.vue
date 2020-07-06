@@ -1,10 +1,9 @@
 <template>
-  <footer class="footer d-flex flex-row justify-content-center py-3">
-    <b-img src="~/assets/images/icons/phone.png" class="footer-icon mx-2 img-fluid" fluid  alt="Responsive image"/>
-    <b-img src="~/assets/images/icons/mail.png" class="footer-icon mx-2 img-fluid" fluid  alt="Responsive image"/>
-    <b-img src="~/assets/images/icons/instagram.png" class="footer-icon mx-2 img-fluid" fluid  alt="Responsive image"/>
-    <b-img src="~/assets/images/icons/facebook.png" class="footer-icon mx-2 img-fluid" fluid  alt="Responsive image"/>
-    <b-img src="~/assets/images/icons/whatsapp.png" class="footer-icon mx-2 img-fluid" fluid  alt="Responsive image"/>
+  <footer class="footer">
+    <div class=" d-flex flex-row justify-content-center align-items-center h-100">
+      <b-img src="~/assets/images/icons/instagram-black.png" class="footer-icon mx-2 img-fluid" fluid  alt="Responsive image"/>
+      <b-img src="~/assets/images/icons/facebook-black.png" class="footer-icon mx-2 img-fluid" fluid  alt="Responsive image"/>
+    </div>
   </footer>
 </template>
 
