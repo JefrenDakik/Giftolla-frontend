@@ -34,7 +34,7 @@ export default {
   computed: {
     ...mapGetters({
       getWishlist: 'wishlist/getWishlist',
-      isAuthenticated: 'auth/isAuthenticated',
+      isAuthenticated: 'authentication/isAuthenticated',
     }),
     className: function () {
       if(this.getWishlist.length == 0) {
@@ -49,7 +49,7 @@ export default {
       saveCart: 'cart/saveCart',
       removeProductFromWishlist: 'wishlist/removeProductFromWishlist'
     }),
-    addToCart() {
+    async addToCart() {
       const cartItems = []
       this.getWishlist.forEach(product => {
         if(product.checked && !product.pickedColor.outOfStock) {
@@ -61,7 +61,9 @@ export default {
         }
       })
 
-      this.saveCart(cartItems)
+      await this.saveCart(cartItems)
+
+      this.$router.push({ name: 'my-cart' })
     }
   }
 }

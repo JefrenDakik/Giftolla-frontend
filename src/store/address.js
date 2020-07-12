@@ -30,7 +30,7 @@ export const actions = {
   },
   async removeAddress(vuexContext, addressId) {
     try {
-      const isAuth = vuexContext.rootGetters['auth/isAuthenticated']
+      const isAuth = vuexContext.rootGetters['authentication/isAuthenticated']
       if(isAuth) {
         const resp = await this.$api.addressService.deleteAddress(addressId)
         

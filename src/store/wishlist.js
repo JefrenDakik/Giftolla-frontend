@@ -38,7 +38,7 @@ export const actions = {
     try {
       let wishlist = []
         
-      const isAuth = vuexContext.rootGetters['auth/isAuthenticated']
+      const isAuth = vuexContext.rootGetters['authentication/isAuthenticated']
       if(isAuth) {
         const data = await this.$api.wishlistService.getWishlist()
 
@@ -76,7 +76,7 @@ export const actions = {
   },
   async saveWishlistProduct(vuexContext, wishlistItem) {
     try {
-      const isAuth = vuexContext.rootGetters['auth/isAuthenticated']
+      const isAuth = vuexContext.rootGetters['authentication/isAuthenticated']
       if(isAuth) {
         await this.$api.wishlistService.saveWishlistProduct(wishlistItem)
       }
@@ -89,7 +89,7 @@ export const actions = {
   },
   async removeProductFromWishlist(vuexContext, productId) {
     try {
-      const isAuth = vuexContext.rootGetters['auth/isAuthenticated']
+      const isAuth = vuexContext.rootGetters['authentication/isAuthenticated']
       if(isAuth) {
         await this.$api.wishlistService.deleteWishlistProduct(productId)
       }

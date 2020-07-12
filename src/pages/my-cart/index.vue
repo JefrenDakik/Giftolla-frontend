@@ -36,7 +36,7 @@ export default {
   computed: {
     ...mapGetters({
       getCart: 'cart/getCart',
-      isAuthenticated: 'auth/isAuthenticated'
+      isAuthenticated: 'authentication/isAuthenticated'
     }),
     className: function () {
       if(this.getCart.length == 0) {

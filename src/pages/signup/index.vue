@@ -56,7 +56,7 @@ export default {
   },
   methods: {
     ...mapActions({
-      signUp: 'auth/signUp',
+      signUp: 'authentication/signUp',
     }),
     async onSubmit() {
       try {

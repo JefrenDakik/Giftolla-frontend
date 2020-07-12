@@ -56,7 +56,7 @@ export const actions = {
         
         await this.dispatch('address/clearAddresses')
         this.$nuxtClientInit()
-      } 
+      }
 
       return customerData
     } catch (error) {
@@ -87,6 +87,31 @@ export const actions = {
       }
 
       return customerData
+    } catch (error) {
+      console.log(error)
+    }
+  },
+  async loginWithFacebook(vuexContext, user) {
+    try {
+      const { name, email, id } = user
+      const customerData = await this.$api.authService.loginWithFacebook(name, email, id)
+      
+      if (customerData) {
+        vuexContext.commit('clearAuthData')
+        vuexContext.commit("setToken", customerData.token)
+        vuexContext.commit('setEmail', customerData.customer.email)
+        vuexContext.commit('setName', customerData.customer.name)
+
+        await this.dispatch('wishlist/saveWishlist')
+        await this.dispatch('cart/uploadCart')
+        
+        await this.dispatch('address/clearAddresses')
+        await this.dispatch('order/clearOrder')
+        this.$nuxtClientInit()
+      }
+
+      return customerData
+      // login will be handled in auth plugin
     } catch (error) {
       console.log(error)
     }

@@ -130,6 +130,14 @@ hr {
 .row-selected {
   background-color: $galapagos-light-green;
 }
+
+.no-header {
+  display:none !important;
+}
+
+.no-footer {
+  display: none !important;
+}
 /*******/
 
 /* add class related to tabs */

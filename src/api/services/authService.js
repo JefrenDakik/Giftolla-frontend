@@ -17,11 +17,31 @@ export default class AuthService {
   }
 
   async signUp(name, email, password, confirmPassword) {
-    return await this.axios.$post(endpoints.customer.signUp,{
+    return await this.axios.$post(endpoints.customer.signUp, {
       name,
       email,
       password,
       confirmPassword,
+    })
+    .then(data => {
+      return data
+    })
+    .catch(error => {
+      console.log(error)
+    })
+  }
+
+  async loginWithFacebook(name, email, facebookId) {
+    return await this.axios.$post(endpoints.customer.loginWithFacebook, {
+      name,
+      email,
+      facebookId,
+    })
+    .then(data => {
+      return data
+    })
+    .catch(error => {
+      console.log(error)
     })
   }
 }

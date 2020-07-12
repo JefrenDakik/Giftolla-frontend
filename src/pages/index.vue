@@ -24,7 +24,8 @@ export default {
   },
   methods: {
     logout(){
-      this.$store.dispatch('auth/logout')
+      this.$auth.logout()
+      this.$store.dispatch('authentication/logout')
     }
   }
 }

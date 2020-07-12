@@ -2,7 +2,7 @@
   <div class="d-flex flex-column">
     <template v-if="paymentCards.length > 0">
       <h6 class="bnq rubik-medium mb-2 font-l">CHOOSE A DEBIT/CREDIT CARD</h6>
-            
+      
       <client-only>
         <PaymentCardsList v-if="paymentCards.length > 0" :cardsList="paymentCards" :removable="removable"
           @showPaymentCardForm="onShowPaymentCardForm" @editPaymentCard="onEditPaymentCard"/>

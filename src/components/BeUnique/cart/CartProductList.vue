@@ -116,12 +116,12 @@ export default {
       saveCartProduct: 'cart/saveCartProduct',
       removeCartProduct: 'cart/removeCartProduct'
     }),
-    onUpdateCount(productId, count) {
+    async onUpdateCount(productId, count) {
       const cartItem = {
         productId,
         quantity: count
       }
-      this.saveCartProduct(cartItem)
+      await this.saveCartProduct(cartItem)
     },
     removeProduct(productId) {
       this.removeCartProduct(productId)

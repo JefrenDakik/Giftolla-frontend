@@ -25,6 +25,16 @@
           type="submit">
           Login
         </AppButton>
+
+        <AppButton class="bnq button-md mt-3 text-center" 
+          @click="loginWithFacebook">
+          Login with facebook
+        </AppButton>
+
+        <AppButton class="bnq button-md mt-3 text-center" 
+          @click="test">
+          test
+        </AppButton>
       </form>
     </ValidationObserver>
   </div>
@@ -44,7 +54,7 @@ export default {
   },
   methods: {
     ...mapActions({
-      signIn: 'auth/signIn'
+      signIn: 'authentication/signIn',
     }),
     async onSubmit() {
       try {
@@ -62,6 +72,16 @@ export default {
       } catch (error) {
         console.log(error)
       }
+    },
+    async loginWithFacebook() {
+      try {
+        await this.$auth.loginWith('facebook')
+      } catch (error) {
+        console.log(error)
+      }
+    },
+    async test() {
+      console.log(this.$auth)
     }
   }
 }

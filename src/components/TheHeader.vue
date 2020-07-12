@@ -56,8 +56,8 @@ export default {
   name: 'TheHeader',
   computed: {
     ...mapGetters({
-      userName: 'auth/getUserName',
-      isAuth: 'auth/isAuthenticated'
+      userName: 'authentication/getUserName',
+      isAuth: 'authentication/isAuthenticated'
     })
   }
 }

@@ -1,4 +1,3 @@
-
 export default {
   mode: 'universal',
   /*
@@ -57,12 +56,36 @@ export default {
     '@nuxtjs/style-resources',
     '@nuxtjs/axios',
     'cookie-universal-nuxt',
+    '@nuxtjs/auth',
   ],
   axios: {
     baseURL: 'http://localhost:8080',
     // credentials: false,
     // proxy: true,
     // retry: { retries: 3 }
+  },
+  auth: {
+    plugins: [ '~/plugins/auth.js' ],
+    strategies: {
+      local: {
+        endpoints: {
+          login: false,
+          logout: false,
+          user: false,
+        },
+      },
+      facebook: {
+        client_id: '275151357151659',
+        userinfo_endpoint: 'https://graph.facebook.com/v7.0/me?fields=name,email',
+        scope: ['email'],
+      },
+    },
+    redirect: {
+      login: '/login',
+      logout: '/',
+      callback: '/login',
+      home: '/'
+    }
   },
   styleResources: {
     scss: './assets/styles/colors.scss'

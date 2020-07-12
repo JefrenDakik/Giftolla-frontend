@@ -40,7 +40,7 @@ export const actions = {
     try {
       let cart = []
 
-      const isAuth = vuexContext.rootGetters['auth/isAuthenticated']
+      const isAuth = vuexContext.rootGetters['authentication/isAuthenticated']
       if(isAuth) {
         const cartItems = await this.$api.cartService.getCart()
 
@@ -75,7 +75,7 @@ export const actions = {
   },
   async saveCart(vuexContext, cartItems) {
     try {
-      const isAuth = vuexContext.rootGetters['auth/isAuthenticated']
+      const isAuth = vuexContext.rootGetters['authentication/isAuthenticated']
       if(isAuth) {
         await this.$api.cartService.saveToCart(cartItems)
       }
@@ -88,7 +88,7 @@ export const actions = {
   },
   async saveCartProduct(vuexContext, cartItem) {
     try {
-      const isAuth = vuexContext.rootGetters['auth/isAuthenticated']
+      const isAuth = vuexContext.rootGetters['authentication/isAuthenticated']
       if(isAuth) {
         await this.$api.cartService.saveToCart([cartItem])
       }
@@ -101,7 +101,7 @@ export const actions = {
   },
   async removeCartProduct(vuexContext, productId) {
     try {
-      const isAuth = vuexContext.rootGetters['auth/isAuthenticated']
+      const isAuth = vuexContext.rootGetters['authentication/isAuthenticated']
       if(isAuth) {
         await this.$api.cartService.deleteCartProduct(productId)
       }
