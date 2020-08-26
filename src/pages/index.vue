@@ -4,7 +4,6 @@
     <Products/>
     <AboutUs/>
     <ContactUs/>
-    <AppButton @click="logout">logout</AppButton>
   </div>
 </template>
 
@@ -22,11 +21,5 @@ export default {
     AboutUs,
     Products,
   },
-  methods: {
-    logout(){
-      this.$auth.logout()
-      this.$store.dispatch('authentication/logout')
-    }
-  }
 }
 </script>

@@ -25,16 +25,23 @@
           type="submit">
           Login
         </AppButton>
+        
+        <div class="d-flex flex-row justify-content-center align-items-center mt-4 w-100">
+          <div class="horizontal-line align-self-center w-25">
+          </div>
+          <div class="mx-2">Or</div>
+          <div class="horizontal-line align-self-center w-25">
+          </div>
+        </div>
 
-        <AppButton class="bnq button-md mt-3 text-center" 
-          @click="loginWithFacebook">
-          Login with facebook
-        </AppButton>
+        <div class="mt-3">
+          Login with your social network
+        </div>
 
-        <AppButton class="bnq button-md mt-3 text-center" 
-          @click="test">
-          test
-        </AppButton>
+        <a href="#" class="fb btn mt-3" @click="loginWithFacebook">
+          <i class="fa fa-facebook fa-fw"></i> Login with Facebook
+        </a>
+
       </form>
     </ValidationObserver>
   </div>
@@ -80,13 +87,21 @@ export default {
         console.log(error)
       }
     },
-    async test() {
-      console.log(this.$auth)
-    }
   }
 }
 </script>
 
 <style lang="scss" scoped>
+@import '@/assets/styles/colors.scss';
 
+.horizontal-line {
+  border: 0.3px solid $dark-grey;
+  width: 120px;
+  height: 0px;
+}
+
+.fb {
+  background-color: #1877F2;
+  color: white;
+}
 </style>

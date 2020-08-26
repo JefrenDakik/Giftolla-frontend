@@ -6,7 +6,7 @@
 
     <b-tabs card nav-wrapper-class="nav-wrapper-class" >
       <b-tab title="ACCOUNT" title-link-class="title-link-class">
-        
+        <AccountInformation class="col-sm-8 center"/>
       </b-tab>
 
       <b-tab title="ORDERS" title-link-class="title-link-class">
@@ -28,6 +28,7 @@
 import PaymentInformation from '@/components/BeUnique/payment/PaymentInformation'
 import ShippingInformation from '@/components/BeUnique/shipping/ShippingInformation'
 import OrdersList from '@/components/BeUnique/order/OrdersList'
+import AccountInformation from '@/components/BeUnique/account/AccountInformation'
 
 export default {
   middleware: 'isAuth',
@@ -35,6 +36,7 @@ export default {
     PaymentInformation,
     ShippingInformation,
     OrdersList,
+    AccountInformation,
   }
 }
 </script>

@@ -153,8 +153,11 @@ export const actions = {
       vuexContext.commit('setName', name)
   },
   async logout(vuexContext) {
+    this.$auth.logout()
+
     vuexContext.commit("clearAuthData")
     await this.dispatch('address/clearAddresses')
+    this.$router.push({ name: 'index' })
   }
 }
 
@@ -164,5 +167,8 @@ export const getters = {
   },
   getUserName(state) {
     return state.name
+  },
+  getEmail(state) {
+    return state.email
   }
 }
